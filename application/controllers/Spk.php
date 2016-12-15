@@ -119,10 +119,10 @@ class Spk extends CI_Controller {
 	public function bapp($id="")
 	{
 		$filename = "BAPP".date('dmY').".doc";
-	    // header("Content-Type: application/vnd.ms-word");
-	    // header("Expires: 0");
-	    // header("Cache-Control:  must-revalidate, post-check=0, pre-check=0");
-	    // header("Content-disposition: attachment; filename=".$filename);
+	    header("Content-Type: application/vnd.ms-word");
+	    header("Expires: 0");
+	    header("Cache-Control:  must-revalidate, post-check=0, pre-check=0");
+	    header("Content-disposition: attachment; filename=".$filename);
 
         $data = array(
 			'title'		=> 'BAPP - '.$id,
