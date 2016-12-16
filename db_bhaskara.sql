@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
+-- version 4.0.10.14
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 18, 2016 at 02:43 PM
--- Server version: 5.7.16-0ubuntu0.16.04.1
--- PHP Version: 7.0.8-0ubuntu0.16.04.3
+-- Host: localhost:3306
+-- Generation Time: Dec 05, 2016 at 11:18 AM
+-- Server version: 5.5.50-cll
+-- PHP Version: 5.4.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,10 +14,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Database: `db_bhaskara`
+-- Database: `utamaweb_bhaskara`
 --
 
 -- --------------------------------------------------------
@@ -26,15 +26,16 @@ SET time_zone = "+00:00";
 -- Table structure for table `atm`
 --
 
-CREATE TABLE `atm` (
-  `id_a` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `atm` (
+  `id_a` int(11) NOT NULL AUTO_INCREMENT,
   `id_k` int(11) NOT NULL,
   `kode_a` varchar(255) NOT NULL,
   `type_a` tinyint(1) NOT NULL COMMENT '1 = Onsite; 2 = Ofsite',
   `alamat_a` varchar(255) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_a`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `atm`
@@ -51,33 +52,37 @@ INSERT INTO `atm` (`id_a`, `id_k`, `kode_a`, `type_a`, `alamat_a`, `updated_at`,
 -- Table structure for table `bahan`
 --
 
-CREATE TABLE `bahan` (
-  `id_b` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `bahan` (
+  `id_b` int(11) NOT NULL AUTO_INCREMENT,
   `kode_b` varchar(11) NOT NULL,
   `nama_b` varchar(255) NOT NULL,
   `harga_tukang_b` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_b`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `bahan`
 --
 
 INSERT INTO `bahan` (`id_b`, `kode_b`, `nama_b`, `harga_tukang_b`, `updated_at`, `created_at`) VALUES
-(6, 'H-4', 'Pylon ALCOM Besar 4 slot', 4500000, '2016-10-25 23:10:56', '2016-10-25 23:10:00'),
-(7, 'M-3', 'Pylon ALCOM Sedang 3 slot', 3300000, '2016-10-25 23:11:19', '2016-10-25 23:11:19'),
-(8, 'K-2', 'Pylon ALCOM Kecil 2 slot ', 2400000, '2016-10-25 23:14:09', '2016-10-25 23:14:09'),
+(6, 'H-4', 'Pylon Besar', 4500000, '2016-11-24 04:00:12', '2016-10-25 23:10:00'),
+(7, 'M-3', 'Pylon Sedang 3 slot', 3300000, '2016-11-24 04:00:25', '2016-10-25 23:11:19'),
+(8, 'K-2', 'Pylon Kecil Type Alumunium Composite 2 Slot ', 2400000, '2016-11-24 04:01:06', '2016-10-25 23:14:09'),
 (9, 'HG-2', 'Pylon Hanging 2 slot ', 1250000, '2016-10-25 23:14:20', '2016-10-25 23:14:20'),
-(10, 'T-2', 'Pylon Tiang SS 5 " 2 slot', 1550000, '2016-10-25 23:14:31', '2016-10-25 23:14:31'),
-(11, 'WS', 'Signage', 750000, '2016-10-25 23:14:51', '2016-10-25 23:14:51'),
+(10, 'T-2', 'Pylon Kecil Type Tiang Stainless Stell Ø 5" 2 Slot', 1550000, '2016-11-24 04:01:27', '2016-10-25 23:14:31'),
+(11, 'WS', 'Signage', 750000, '2016-11-25 08:00:10', '2016-10-25 23:14:51'),
 (12, 'CSA-1', 'Cover ATM tipe CSA 1', 250000, '2016-10-25 23:15:59', '2016-10-25 23:15:59'),
 (13, 'CSA-2', 'Cover ATM tipe CSA 2', 250000, '2016-10-25 23:16:12', '2016-10-25 23:16:12'),
 (14, 'A', 'Pylon ATM tipe A / Alcom besar', 4500000, '2016-10-25 23:16:31', '2016-10-25 23:16:31'),
 (15, 'B', 'Pylon ATM tipe B / Alcom sedang', 3300000, '2016-10-25 23:16:51', '2016-10-25 23:16:51'),
 (16, 'C-1', 'Pylon ATM tipe C 1 / Alcom kecil', 2400000, '2016-10-25 23:17:06', '2016-10-25 23:17:06'),
 (17, 'C-2', 'Pylon ATM tipe C 2 - Tiang SS 5"', 1550000, '2016-10-25 23:17:19', '2016-10-25 23:17:19'),
-(18, 'D', 'Pylon ATM tipe D ', 1250000, '2016-10-25 23:17:33', '2016-10-25 23:17:33');
+(18, 'D', 'Pylon ATM tipe D ', 1250000, '2016-10-25 23:17:33', '2016-10-25 23:17:33'),
+(19, 'Teralis', 'Teralis CSA2', 450000, '2016-11-24 03:53:21', '2016-11-22 04:16:40'),
+(20, 'Pylon Bersa', 'Pylon Hanging Khusus ( Pylon Bersama )', 1000000, '2016-11-24 04:02:37', '2016-11-24 03:57:43'),
+(21, 'Hanging Ind', 'Pylon Hanging Indomart', 750000, '2016-11-24 04:02:08', '2016-11-24 03:59:12');
 
 -- --------------------------------------------------------
 
@@ -85,14 +90,15 @@ INSERT INTO `bahan` (`id_b`, `kode_b`, `nama_b`, `harga_tukang_b`, `updated_at`,
 -- Table structure for table `harga_bahan`
 --
 
-CREATE TABLE `harga_bahan` (
-  `id_hb` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `harga_bahan` (
+  `id_hb` int(11) NOT NULL AUTO_INCREMENT,
   `id_b` int(11) NOT NULL,
   `id_z` int(11) NOT NULL,
   `harga_b` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_hb`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=84 ;
 
 --
 -- Dumping data for table `harga_bahan`
@@ -163,7 +169,11 @@ INSERT INTO `harga_bahan` (`id_hb`, `id_b`, `id_z`, `harga_b`, `updated_at`, `cr
 (69, 15, 6, 38500000, '2016-10-01 00:00:00', '2016-10-01 00:00:00'),
 (70, 16, 6, 28500000, '2016-10-01 00:00:00', '2016-10-01 00:00:00'),
 (71, 17, 6, 22200000, '2016-10-01 00:00:00', '2016-10-01 00:00:00'),
-(72, 18, 6, 8200000, '2016-10-01 00:00:00', '2016-10-01 00:00:00');
+(72, 18, 6, 8200000, '2016-10-01 00:00:00', '2016-10-01 00:00:00'),
+(77, 19, 4, 700000, '2016-11-22 04:23:49', '2016-11-22 04:23:49'),
+(81, 19, 3, 700000, '2016-11-22 07:39:22', '2016-11-22 07:39:22'),
+(82, 20, 4, 7000000, '2016-11-24 03:58:27', '2016-11-24 03:58:27'),
+(83, 21, 4, 2360000, '2016-11-24 03:59:39', '2016-11-24 03:59:39');
 
 -- --------------------------------------------------------
 
@@ -171,11 +181,12 @@ INSERT INTO `harga_bahan` (`id_hb`, `id_b`, `id_z`, `harga_b`, `updated_at`, `cr
 -- Table structure for table `jenis_kantor`
 --
 
-CREATE TABLE `jenis_kantor` (
-  `id_jk` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `jenis_kantor` (
+  `id_jk` int(11) NOT NULL AUTO_INCREMENT,
   `nama_jk` varchar(255) NOT NULL,
-  `created_at_jk` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at_jk` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_jk`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `jenis_kantor`
@@ -197,8 +208,8 @@ INSERT INTO `jenis_kantor` (`id_jk`, `nama_jk`, `created_at_jk`) VALUES
 -- Table structure for table `kantor`
 --
 
-CREATE TABLE `kantor` (
-  `id_k` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `kantor` (
+  `id_k` int(11) NOT NULL AUTO_INCREMENT,
   `kode_k` varchar(255) NOT NULL,
   `id_jk` int(11) NOT NULL,
   `id_parent` int(11) NOT NULL,
@@ -207,19 +218,133 @@ CREATE TABLE `kantor` (
   `id_z` int(11) NOT NULL,
   `status_k` tinyint(1) NOT NULL COMMENT '1 = Aktif; 2 = Tidak Aktif',
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_k`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=152 ;
 
 --
 -- Dumping data for table `kantor`
 --
 
 INSERT INTO `kantor` (`id_k`, `kode_k`, `id_jk`, `id_parent`, `nama_k`, `alamat_k`, `id_z`, `status_k`, `updated_at`, `created_at`) VALUES
-(12, '', 1, 0, 'Kalimantan Timur', '', 3, 1, '2016-10-25 23:02:05', '2016-10-25 23:00:52'),
-(13, '', 2, 12, 'Samarinda', 'Alamat Samarinda', 3, 1, '2016-10-25 23:02:26', '2016-10-25 23:02:26'),
-(14, '13213', 3, 13, 'Samarinda Utara', 'Alamat jalan', 3, 1, '2016-11-14 08:52:22', '2016-10-25 23:03:06'),
-(15, '', 7, 12, 'ATM 1', '', 3, 1, '2016-10-25 23:08:01', '2016-10-25 23:08:01'),
-(16, '', 7, 12, 'ATM 2', '', 3, 1, '2016-10-25 23:08:27', '2016-10-25 23:08:27');
+(28, '', 1, 0, 'Kanwil Denpasar', 'Jl. Dr Kusuma Atmadja No. 1', 4, 1, '2016-11-22 06:46:14', '2016-11-22 06:45:46'),
+(29, '', 2, 28, 'Selong', 'Jl. Pahlawan No. 92 Selong', 4, 1, '2016-11-24 04:03:04', '2016-11-22 06:46:39'),
+(30, '', 3, 29, 'KCP Masbagik', 'Jl. Raya Rinjani No. 5 Masbagik', 4, 1, '2016-11-25 02:55:36', '2016-11-22 06:48:09'),
+(31, '', 6, 29, 'Teras Jerowaru', 'Jl. Jurusan Keruwak - Jerowaru', 4, 1, '2016-11-25 02:55:45', '2016-11-22 06:48:52'),
+(32, '', 6, 29, 'Teras Suela', 'Jl. Pariwisata Lemor, Dusun Suela', 4, 1, '2016-11-25 02:55:56', '2016-11-22 06:49:42'),
+(34, '', 2, 28, 'Ruteng', 'Jl. Yos Sudarso No. 25 Ruteng', 3, 1, '2016-11-24 03:27:08', '2016-11-22 07:17:31'),
+(37, '', 2, 28, 'Soe', 'Jl. Hayam Wuruk, Kota Baru, Kota Soe, Kabupaten Timor Tengah Selatan, NTT', 3, 1, '2016-11-24 04:04:18', '2016-11-22 07:42:32'),
+(38, '', 2, 28, 'Maumere', 'Jl. Don P.c.x. Da Silva No. 1 Maumere', 3, 1, '2016-11-24 04:03:28', '2016-11-22 07:45:51'),
+(39, '', 2, 28, 'Bajawa', 'Jl. Soekarno-Hatta, Ngedukelu, Bajawa, Kabupaten Ngada, NTT', 3, 1, '2016-11-24 04:03:49', '2016-11-22 07:46:46'),
+(40, '', 2, 28, 'Kalabahi', 'Jl. Soetoyo No. 6, Kalabahi', 3, 1, '2016-11-24 04:03:58', '2016-11-22 07:47:26'),
+(41, '', 2, 28, 'Kefamenanu ', 'Jln. El Tari Kec. kota Kefamenanu', 3, 1, '2016-11-24 04:04:08', '2016-11-22 07:48:08'),
+(42, '', 2, 28, 'Mataram', 'Jl. Pejanggik No.16, Mataram Bar., Selaparang, Kota Mataram, NTB', 4, 1, '2016-11-24 04:12:19', '2016-11-22 07:48:38'),
+(43, '', 2, 28, 'Gatot Subroto', 'Jl. Gatot Subroto Barat No.459, Padangsambian Kaja, Denpasar Bar, Kota Denpasar, Bali 80118', 4, 1, '2016-11-24 04:12:36', '2016-11-22 07:49:31'),
+(44, '', 2, 28, 'Gajah Mada', 'Jl. Gajah Mada No. 5-7, Dauh Puri Kangin, Denpasar Barat', 4, 1, '2016-11-24 04:04:32', '2016-11-22 07:50:04'),
+(45, '', 2, 28, 'Renon', 'Jl. dr Kusuma Atmadja No. 1', 4, 1, '2016-11-24 04:04:50', '2016-11-22 07:50:28'),
+(46, '', 2, 28, 'Gianyar ', 'Jl. Pudak No. 19, Kel. Gianyar', 4, 1, '2016-11-24 04:04:41', '2016-11-22 07:54:28'),
+(47, '', 2, 28, 'Semarapura', 'Jl. Gn. Batukaru No.7, Semarapura Kelod Kangin, Semarapura, Kabupaten Klungkung, Bali 80761', 4, 1, '2016-11-24 04:06:09', '2016-11-22 07:57:42'),
+(48, '', 2, 28, 'Kupang', 'Jl. Soekarno No.18, Fontein, Kec. Kota Raja, Kota Kupang, NTT', 3, 1, '2016-11-24 04:07:03', '2016-11-22 08:01:41'),
+(49, '', 2, 28, 'Praya', 'Jl. Gajah Mada No.128, Praya, Kabupaten Lombok Tengah, Nusa Tenggara Bar. 83511', 4, 1, '2016-11-24 04:09:08', '2016-11-22 08:03:49'),
+(50, '', 2, 28, 'Raba Bima ', 'Jl. Pintu Gerbang No.1, Sarae, Rasanae Bar., Bima, Nusa Tenggara Bar. 52113', 4, 1, '2016-11-24 04:09:36', '2016-11-22 08:05:01'),
+(51, '', 2, 28, 'Atambua ', 'Jl. Ahmad Yani, Atambua, Kabupaten Belu, NTT', 3, 1, '2016-11-24 04:12:55', '2016-11-22 08:05:53'),
+(52, '', 2, 28, 'Ende', 'Jl. Sukarno Kelurahan Kotaratu Ende, NTT', 3, 1, '2016-11-24 04:05:00', '2016-11-22 08:06:28'),
+(53, '', 8, 34, 'Swalayan Nirwana Ruteng ', 'Jl. Adi Sucipto, Ruteng', 3, 1, '2016-11-23 03:47:21', '2016-11-22 08:08:22'),
+(54, '', 8, 34, 'Toko Sumber Utama', '', 3, 1, '2016-11-23 03:48:19', '2016-11-22 08:08:51'),
+(55, '', 8, 34, 'Pasar Puni Ruteng', 'Pau, Langke Rembong, Kabupaten Manggarai, NTT', 3, 1, '2016-11-23 07:07:19', '2016-11-22 08:09:42'),
+(56, '', 8, 34, 'Pertokoan Mahaputra', '', 3, 1, '2016-11-23 07:07:36', '2016-11-22 08:10:57'),
+(57, '', 3, 45, 'KCP Diponegoro', 'Jl. Diponegoro Renon', 4, 1, '2016-11-22 08:13:04', '2016-11-22 08:13:04'),
+(58, '', 8, 37, 'Kodim Soe', '', 3, 1, '2016-11-23 07:07:51', '2016-11-23 02:28:13'),
+(59, '', 8, 37, 'Minimarket Mubatar', '', 3, 1, '2016-11-23 07:08:04', '2016-11-23 02:31:01'),
+(60, '', 8, 37, 'Kantor Bupati Soe', 'Jalan Basuki Rachmat Nomor 1, Soe', 3, 1, '2016-11-23 07:06:49', '2016-11-23 02:31:30'),
+(61, '', 8, 37, 'Temporary Outlet Soe ', 'Jl. Muh Hatta No. 34 Soe', 3, 1, '2016-11-23 07:06:49', '2016-11-23 02:34:04'),
+(62, '', 3, 34, 'KCP Borong', 'Rana Loba, Borong, Kabupaten Manggarai Timur, NTT', 3, 1, '2016-11-25 06:56:10', '2016-11-23 02:34:54'),
+(63, '', 5, 34, 'Unit Ngorang Ruteng', '', 3, 1, '2016-11-25 02:58:06', '2016-11-23 02:35:57'),
+(64, '', 5, 34, 'Unit Pota', '', 3, 1, '2016-11-25 06:26:02', '2016-11-23 02:36:25'),
+(65, '', 6, 34, 'Teras Pasar Ruteng', 'Jl. Niaga, Ruteng – Manggarai, NTT', 3, 1, '2016-11-25 02:47:12', '2016-11-23 02:38:49'),
+(66, '', 2, 28, 'Larantuka', 'Jl. Piere Tendean No 3 Kelurahan Lokea, Kabupaten Flores Timur, NTT', 3, 1, '2016-11-25 06:29:24', '2016-11-23 02:39:32'),
+(67, '', 8, 38, 'SMK Gabriel Maumere', 'Jl. Soekarno Hatta Maumere', 3, 1, '2016-11-23 07:04:06', '2016-11-23 02:40:43'),
+(68, '', 8, 38, 'SMA 1 Maumere', 'Jl. Mawar No. 1 Maumere', 3, 1, '2016-11-25 06:30:06', '2016-11-23 02:41:49'),
+(69, '', 8, 34, 'Swalayan Roxy Ruteng', '', 3, 1, '2016-11-23 07:09:02', '2016-11-23 02:42:35'),
+(70, '', 8, 34, 'SPBU Mahaputra Ruteng', '', 2, 1, '2016-11-23 07:09:38', '2016-11-23 02:46:17'),
+(71, '', 8, 34, 'SPBU Mena Ruteng', 'Mena Kel. Wali Langke Rembong NTT, Kabupaten Manggarai, NTT', 3, 1, '2016-11-23 06:46:12', '2016-11-23 02:48:45'),
+(72, '', 8, 34, 'SPBU Wardun Ruteng', '', 3, 1, '2016-11-23 06:47:00', '2016-11-23 02:49:21'),
+(73, '', 8, 34, 'Polres Manggarai Ruteng', 'Jl. Katedral Ruteng, Langke Rembong, Kabupaten Manggarai, NTT', 3, 1, '2016-11-24 02:49:49', '2016-11-23 02:49:51'),
+(74, '', 8, 34, 'Pegadaian Pasar Puni Ruteng', '', 3, 1, '2016-11-23 07:11:02', '2016-11-23 02:50:39'),
+(75, '', 8, 40, 'Bandara Mali Kalabahi', 'Jl. Soekarno-Hatta, Kabola, Kabupaten Alor, NTT', 3, 1, '2016-11-23 07:11:37', '2016-11-23 02:52:10'),
+(76, '', 8, 38, 'Swalayan Roxy Maumere', 'Jl. Dhon Tomas Maumere', 3, 1, '2016-11-23 07:12:32', '2016-11-23 02:55:47'),
+(77, '', 8, 38, 'Hotel Capa Maumere', 'Nairoa Waipare Street, Kota Uneng, Alok, Sikka, Flores, Kabupaten Sikka, NTT', 3, 1, '2016-11-23 07:13:34', '2016-11-23 03:03:23'),
+(78, '', 8, 52, 'Swalayan Roxy Ende', 'Jl. A. Yani Ende', 3, 1, '2016-11-23 07:14:16', '2016-11-23 03:08:37'),
+(79, '', 8, 41, 'Kodim Kefa', '', 3, 1, '2016-11-23 07:14:49', '2016-11-23 03:12:09'),
+(80, '', 8, 41, 'Polres Kefa', 'Kefamenanu Tengah, NTT', 3, 1, '2016-11-23 07:15:47', '2016-11-23 03:20:25'),
+(81, '', 8, 41, 'RSUD Kefa', 'Jalan Letjen Suprapto Kefamenanu', 3, 1, '2016-11-23 06:30:10', '2016-11-23 03:26:18'),
+(82, '', 8, 41, 'Toko Jaya Elektronik Kefa', 'Kefamenanu Sel, Kota Kefamenanu, Kabupaten Timor Tengah Utara, NTT', 3, 1, '2016-11-23 06:43:27', '2016-11-23 03:27:42'),
+(83, '', 8, 41, 'Toko Rembulan Kefa ', 'Jl RA Kartini, Kefamenanu Tengah, Kefamenanu', 3, 1, '2016-11-23 06:41:43', '2016-11-23 03:28:41'),
+(84, '', 8, 41, 'Tulip Kefa', '', 3, 1, '2016-11-23 06:40:45', '2016-11-23 03:29:27'),
+(85, '', 7, 41, 'Unit Eban Kefa', 'Jl. Hati Suci Rt 01 Rw 001 Kel Eban, Kefamenanu, NTT', 3, 1, '2016-11-23 06:22:58', '2016-11-23 03:30:32'),
+(86, '', 7, 41, 'Unit Kartini', 'Jl. Kartini No 28 Rt 017 Rw 04, Kefamenanu, NTT', 3, 1, '2016-11-23 06:29:03', '2016-11-23 03:38:05'),
+(87, '', 8, 46, 'CTC Celuk Gianyar', 'Jl, Raya Celuk Gianyar', 4, 1, '2016-11-23 06:39:47', '2016-11-23 03:39:35'),
+(88, '', 8, 46, 'Bali Bird Park', 'Jl. Serma Cok Ngurah Gambir, Singapadu, Batubulan, Kabupaten Gianyar, Bali', 4, 1, '2016-11-23 06:38:26', '2016-11-23 03:48:17'),
+(89, '', 8, 46, 'Cocomart Celuk', 'Jl. Raya Sukawati, Sukawati, Kabupaten Gianyar, Bali 80582', 4, 1, '2016-11-23 06:37:34', '2016-11-23 03:59:32'),
+(90, '', 8, 46, 'Bali Zoo', 'Jl. Raya Singapadu Banjar Seseh Sukawati Batuan Sukawati Gianyar Bali, Bali 80582', 4, 1, '2016-11-23 06:36:57', '2016-11-23 04:05:11'),
+(91, '', 8, 46, 'Indomart Singapadu', 'JL. Singapadu Gianyar Bali', 4, 1, '2016-11-23 06:34:29', '2016-11-23 04:06:44'),
+(92, '', 8, 46, 'Depo Bagoes Bangunan', 'Jalan Raya Wanayu, Bedulu, Gianyar, Bali 80511', 4, 1, '2016-11-23 06:35:25', '2016-11-23 04:07:18'),
+(93, '', 8, 46, 'Pasar Seni Guwang', 'Guwang, Sukawati, Kabupaten Gianyar, Bali 80582', 4, 1, '2016-11-23 06:33:22', '2016-11-23 04:07:47'),
+(94, '', 8, 46, 'SPBU Silakarang', 'Jl. Raya Silakarang, Gianyar', 4, 1, '2016-11-23 06:32:45', '2016-11-23 04:09:18'),
+(95, '', 8, 46, 'Indomart Patih Jelantik', 'Jl. Patih Jelantik-Gianyar, Gianyar, Kec. Gianyar, Kabupaten Gianyar, Bali 80513', 4, 1, '2016-11-23 06:32:07', '2016-11-23 04:10:15'),
+(96, '', 8, 46, 'Indomart Banjar Negari', 'Jl. Raya Negari Gianyar', 4, 1, '2016-11-23 06:31:15', '2016-11-23 06:27:22'),
+(97, '', 8, 46, 'Indomart Tegehe', 'Jl. Batu Yang, Batu Bulan, Sukawati, Gianyar, Bali 80582', 4, 1, '2016-11-23 06:36:06', '2016-11-23 06:31:54'),
+(98, '', 8, 45, 'Arys Mart Sidakarya', '', 4, 1, '2016-11-23 07:03:20', '2016-11-23 06:45:49'),
+(99, '', 8, 45, 'Swalayan Karyasari', 'Jl. Raya Sesetan No. 342, Sesetan, Denpasar Selatan, Kota Denpasar, Bali 80223', 4, 1, '2016-11-23 07:01:50', '2016-11-23 06:46:34'),
+(100, '', 8, 45, 'Kimia Farma Teuku Umar', 'Jl. Teuku Umar No.246, Dauh Puri Kauh, Denpasar Bar., Kota Denpasar, Bali 80114', 4, 1, '2016-11-23 07:01:04', '2016-11-23 06:47:07'),
+(102, '', 8, 44, 'Kebo Iwa', '', 4, 1, '2016-11-24 08:41:05', '2016-11-23 06:48:47'),
+(103, '', 8, 44, 'Payangan', '', 4, 1, '2016-11-24 08:41:57', '2016-11-23 06:52:32'),
+(104, '', 8, 44, 'Restoran Belimbing', '', 4, 1, '2016-11-24 08:41:40', '2016-11-23 06:53:11'),
+(105, '', 8, 44, 'SOKA ', '', 4, 1, '2016-11-23 06:53:40', '2016-11-23 06:53:40'),
+(106, '', 2, 28, 'Singaraja', 'Jl. Ngurah Rai No. 74', 4, 1, '2016-11-25 06:27:40', '2016-11-23 06:54:47'),
+(107, '', 8, 106, 'Yonif Singaraja', '', 4, 1, '2016-11-25 06:28:54', '2016-11-23 07:00:15'),
+(108, '', 8, 47, 'Goa Lawah', '', 4, 1, '2016-11-24 01:43:13', '2016-11-23 07:00:53'),
+(109, '', 8, 47, 'Jungut Batu', '', 4, 1, '2016-11-24 01:42:03', '2016-11-23 07:01:24'),
+(110, '', 8, 44, 'POLRES BADUNG ', '', 4, 1, '2016-11-23 07:08:01', '2016-11-23 07:04:24'),
+(111, '', 8, 44, 'UD.MULIA JAYA ', '', 4, 1, '2016-11-23 07:08:34', '2016-11-23 07:04:56'),
+(112, '', 8, 44, 'Polda Bali', 'Jl. WR. Supratman No 7, Kota Denpasar, Bali 80237', 4, 1, '2016-11-23 07:44:47', '2016-11-23 07:05:22'),
+(113, '', 8, 44, 'LABELLE VILLA ', '', 4, 1, '2016-11-23 07:06:27', '2016-11-23 07:06:27'),
+(114, '', 8, 44, 'Dewata TV', 'Jl. Hayam Wuruk No.98, Panjer, Denpasar Sel., Kota Denpasar, Bali 80239', 4, 1, '2016-11-23 07:41:13', '2016-11-23 07:12:13'),
+(115, '', 8, 44, 'Bread Life', 'Jl. Cok Agung Kresna no. 37, Denpasar', 4, 1, '2016-11-23 07:21:04', '2016-11-23 07:12:46'),
+(116, '', 8, 44, 'RSUD Sanglah', 'Jalan Diponegoro, Dauh Puri Klod, Denpasar Barat, Kota Denpasar, Bali 80113', 4, 1, '2016-11-23 07:19:51', '2016-11-23 07:13:21'),
+(117, '', 2, 28, 'Negara', '', 4, 1, '2016-11-24 04:14:07', '2016-11-23 07:14:12'),
+(118, '', 5, 117, 'Unit Baluk', 'Desa Banyubiru, Negara, Bali', 4, 1, '2016-11-24 01:52:09', '2016-11-23 07:15:22'),
+(119, '', 5, 117, 'Unit Jembrana Negara', 'Jl. Pulau Irian 15, Negara, Bali', 4, 1, '2016-11-25 06:55:46', '2016-11-23 07:15:59'),
+(120, '', 5, 117, 'Unit Pekutatan Negara', 'Desa Pekutatan, Negara, Bali', 4, 1, '2016-11-25 06:58:40', '2016-11-23 07:16:57'),
+(121, '', 5, 117, 'Unit Yehembang Negara', '', 4, 1, '2016-11-24 01:53:02', '2016-11-23 07:21:43'),
+(122, '', 5, 117, 'Unit Mendoyo Negara', '', 4, 1, '2016-11-24 01:45:18', '2016-11-23 07:27:46'),
+(123, '', 5, 117, 'Unit Gerokgak', '', 4, 1, '2016-11-24 01:46:32', '2016-11-23 07:28:48'),
+(124, '', 5, 117, 'Unit Goris', '', 4, 1, '2016-11-24 01:47:00', '2016-11-23 07:29:56'),
+(125, '', 5, 106, 'Unit Pancasari', 'Desa Pancasari, Singaraja, Bali', 4, 1, '2016-11-25 06:57:53', '2016-11-23 07:32:26'),
+(126, '', 5, 106, 'Unit Sangsit', 'Jl. Raya Kerobokan, Kerobokan, Sawan, Kabupaten Buleleng, Bali 81119', 4, 1, '2016-11-24 01:49:18', '2016-11-23 07:33:19'),
+(127, '', 5, 106, 'Unit Setiabudi', 'Jl. Setiabudi, Singaraja, Bali', 4, 1, '2016-11-24 01:51:03', '2016-11-23 07:34:11'),
+(128, '', 5, 106, 'Unit Banjar', 'Jl. Ngurah Rai No.74, Banjar Tegal, Kec. Buleleng, Kabupaten Buleleng, Bali 81117', 4, 1, '2016-11-24 01:50:13', '2016-11-23 07:34:49'),
+(129, '', 5, 106, 'Unit Buleleng', 'Jl. Mayor Metra, Singaraja, Bali', 4, 1, '2016-11-24 01:51:49', '2016-11-23 07:35:28'),
+(130, '', 5, 106, 'Unit Busungbiu', 'Jl. Kiskinda, Kelurahan Busungbiu, Singaraja, Bali', 4, 1, '2016-11-24 01:53:41', '2016-11-23 07:36:02'),
+(131, '', 5, 106, 'Unit Tamblang', 'Desa Tamblang, Singaraja, Bali', 4, 1, '2016-11-24 01:55:00', '2016-11-23 07:36:47'),
+(132, '', 5, 106, 'Unit Banyuatis', '', 4, 1, '2016-11-24 01:44:28', '2016-11-23 07:37:21'),
+(133, '', 5, 106, 'Unit Lovina', 'Jalan Raya Singaraja – Seririt, Singaraja, Bali', 4, 1, '2016-11-24 01:47:49', '2016-11-23 07:44:07'),
+(134, '', 7, 28, 'KANWIL DENPASAR ', '', 4, 1, '2016-11-23 07:45:06', '2016-11-23 07:45:06'),
+(135, '', 7, 44, 'KC Gajah Mada', 'Jl. Gajah Mada No. 5-7, Dauh Puri Kangin, Denpasar Barat', 4, 1, '2016-11-25 07:00:07', '2016-11-23 07:45:43'),
+(136, '', 8, 34, 'Toko Surya Bahari', 'Ruteng', 3, 1, '2016-11-24 03:02:00', '2016-11-24 03:01:46'),
+(137, '', 8, 44, 'Mahendradata', '', 4, 1, '2016-11-25 06:29:50', '2016-11-25 03:20:42'),
+(140, '', 5, 43, 'Unit Munggu', 'Jl. By Pass Tanah Lot, Munggu, Mengwi, Kabupaten Badung, Bali 80351', 4, 1, '2016-11-29 01:54:39', '2016-11-29 01:54:39'),
+(141, '', 5, 43, 'Unit Petang', 'Jl.  Raya Petang, Petang, Bali, 80353', 4, 1, '2016-11-29 01:55:27', '2016-11-29 01:55:27'),
+(142, '', 5, 43, 'Unit Blahkiuh', 'Jl. Raya Blahkiuhh', 4, 1, '2016-11-29 01:56:20', '2016-11-29 01:56:09'),
+(143, '', 5, 43, 'Unit Mengwi', 'Jl. I Gusti Ngurah Rai, Mengwi, Kabupaten Badung, Bali 80351', 4, 1, '2016-11-29 01:56:50', '2016-11-29 01:56:50'),
+(144, '', 2, 28, 'Bangli', 'Jl. Kusumayudha No.1, Kawan, Kec. Bangli, Kabupaten Bangli, Bali 80614', 4, 1, '2016-11-29 01:57:57', '2016-11-29 01:57:57'),
+(145, '', 5, 144, 'Unit Kintamani', 'Kedisan, Kintamani, Kabupaten Bangli, Bali 80652', 4, 1, '2016-11-29 01:59:01', '2016-11-29 01:59:01'),
+(146, '', 5, 144, 'Unit Catur', 'Jl. Raya Catur, Banjar Catur, Desa Catur, Bangli, Bali', 4, 1, '2016-11-29 01:59:48', '2016-11-29 01:59:48'),
+(147, '', 5, 144, 'Unit Penelokan Bangli', 'Jl. Raya Penelokan, Bangli, Bali', 4, 1, '2016-11-29 02:00:28', '2016-11-29 02:00:28'),
+(148, '', 5, 47, 'Unit Aan', 'Br Pau Desa Tihingan, Semarapura, Bali', 4, 1, '2016-11-29 02:01:14', '2016-11-29 02:01:14'),
+(149, '', 5, 47, 'Unit Gel Gel', 'Banjar Pande Desa Kamasan, Semarapura, Bali', 4, 1, '2016-11-29 02:01:47', '2016-11-29 02:01:47'),
+(150, '', 5, 47, 'Unit Kusamba', 'Kampung Kusamba, Semarapura, Bali', 4, 1, '2016-11-29 02:02:21', '2016-11-29 02:02:21'),
+(151, '', 2, 28, 'Singaraja', '', 4, 1, '2016-12-05 03:05:27', '2016-12-05 03:05:27');
 
 -- --------------------------------------------------------
 
@@ -227,19 +352,98 @@ INSERT INTO `kantor` (`id_k`, `kode_k`, `id_jk`, `id_parent`, `nama_k`, `alamat_
 -- Table structure for table `pekerjaan`
 --
 
-CREATE TABLE `pekerjaan` (
-  `id_p` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pekerjaan` (
+  `id_p` int(11) NOT NULL AUTO_INCREMENT,
   `id_k` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_p`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=91 ;
 
 --
 -- Dumping data for table `pekerjaan`
 --
 
 INSERT INTO `pekerjaan` (`id_p`, `id_k`, `updated_at`, `created_at`) VALUES
-(2, 15, '2016-10-25 23:34:23', '2016-10-25 23:34:23');
+(8, 30, '2016-11-22 06:50:00', '2016-11-22 06:50:00'),
+(9, 31, '2016-11-22 06:53:32', '2016-11-22 06:53:32'),
+(10, 32, '2016-11-22 06:54:58', '2016-11-22 06:54:58'),
+(14, 58, '2016-11-23 07:51:48', '2016-11-23 07:51:48'),
+(15, 59, '2016-11-23 08:05:18', '2016-11-23 08:05:18'),
+(16, 60, '2016-11-23 08:16:12', '2016-11-23 08:16:12'),
+(17, 61, '2016-11-23 08:30:30', '2016-11-23 08:30:30'),
+(18, 53, '2016-11-24 01:59:14', '2016-11-24 01:59:14'),
+(19, 87, '2016-11-24 02:04:10', '2016-11-24 02:04:10'),
+(20, 88, '2016-11-24 02:08:08', '2016-11-24 02:08:08'),
+(21, 54, '2016-11-24 02:11:53', '2016-11-24 02:11:53'),
+(22, 74, '2016-11-24 02:13:03', '2016-11-24 02:13:03'),
+(23, 56, '2016-11-24 02:16:41', '2016-11-24 02:16:41'),
+(24, 89, '2016-11-24 02:28:18', '2016-11-24 02:28:18'),
+(25, 90, '2016-11-24 02:31:14', '2016-11-24 02:31:14'),
+(26, 91, '2016-11-24 02:32:56', '2016-11-24 02:32:56'),
+(27, 92, '2016-11-24 02:34:40', '2016-11-24 02:34:40'),
+(28, 93, '2016-11-24 02:48:54', '2016-11-24 02:48:54'),
+(29, 73, '2016-11-24 02:50:33', '2016-11-24 02:50:33'),
+(30, 94, '2016-11-24 02:51:52', '2016-11-24 02:51:52'),
+(31, 95, '2016-11-24 02:58:22', '2016-11-24 02:58:22'),
+(32, 96, '2016-11-24 03:01:27', '2016-11-24 03:01:27'),
+(33, 136, '2016-11-24 03:02:44', '2016-11-24 03:02:44'),
+(34, 97, '2016-11-24 03:06:22', '2016-11-24 03:06:22'),
+(35, 92, '2016-11-24 03:30:42', '2016-11-24 03:30:42'),
+(36, 98, '2016-11-24 04:03:26', '2016-11-24 04:03:26'),
+(37, 62, '2016-11-24 07:33:14', '2016-11-24 07:33:14'),
+(38, 98, '2016-11-24 08:08:13', '2016-11-24 08:08:13'),
+(39, 99, '2016-11-24 08:14:09', '2016-11-24 08:14:09'),
+(40, 100, '2016-11-24 08:19:27', '2016-11-24 08:19:27'),
+(41, 102, '2016-11-24 08:43:17', '2016-11-24 08:43:17'),
+(42, 63, '2016-11-25 02:58:55', '2016-11-25 02:58:55'),
+(43, 64, '2016-11-25 03:02:30', '2016-11-25 03:02:30'),
+(44, 65, '2016-11-25 03:04:54', '2016-11-25 03:04:54'),
+(46, 137, '2016-11-25 03:23:11', '2016-11-25 03:23:11'),
+(47, 103, '2016-11-25 03:33:46', '2016-11-25 03:33:46'),
+(48, 104, '2016-11-25 03:37:10', '2016-11-25 03:37:10'),
+(49, 105, '2016-11-25 03:41:26', '2016-11-25 03:41:26'),
+(50, 107, '2016-11-25 04:08:56', '2016-11-25 04:08:56'),
+(51, 75, '2016-11-25 07:00:58', '2016-11-25 07:00:58'),
+(52, 69, '2016-11-25 07:03:23', '2016-11-25 07:03:23'),
+(53, 72, '2016-11-25 07:05:51', '2016-11-25 07:05:51'),
+(54, 72, '2016-11-25 07:05:59', '2016-11-25 07:05:59'),
+(55, 71, '2016-11-25 07:36:01', '2016-11-25 07:36:01'),
+(56, 76, '2016-11-25 07:39:12', '2016-11-25 07:39:12'),
+(57, 77, '2016-11-25 07:41:58', '2016-11-25 07:41:58'),
+(58, 78, '2016-11-25 07:54:28', '2016-11-25 07:54:28'),
+(59, 107, '2016-11-28 02:45:01', '2016-11-28 02:45:01'),
+(60, 108, '2016-11-28 02:51:14', '2016-11-28 02:51:14'),
+(61, 109, '2016-11-28 03:09:57', '2016-11-28 03:09:57'),
+(62, 118, '2016-11-28 03:55:40', '2016-11-28 03:55:40'),
+(63, 119, '2016-11-28 04:29:07', '2016-11-28 04:29:07'),
+(64, 120, '2016-11-28 04:40:53', '2016-11-28 04:40:53'),
+(65, 121, '2016-11-28 04:53:16', '2016-11-28 04:53:16'),
+(66, 122, '2016-11-28 05:20:49', '2016-11-28 05:20:49'),
+(67, 140, '2016-11-29 02:05:39', '2016-11-29 02:05:39'),
+(68, 141, '2016-11-29 02:05:51', '2016-11-29 02:05:51'),
+(69, 142, '2016-11-29 02:06:05', '2016-11-29 02:06:05'),
+(70, 143, '2016-11-29 02:06:13', '2016-11-29 02:06:13'),
+(71, 145, '2016-11-29 02:06:22', '2016-11-29 02:06:22'),
+(72, 146, '2016-11-29 02:06:30', '2016-11-29 02:06:30'),
+(73, 147, '2016-11-29 02:06:39', '2016-11-29 02:06:39'),
+(74, 148, '2016-11-29 02:06:48', '2016-11-29 02:06:48'),
+(75, 149, '2016-11-29 02:06:55', '2016-11-29 02:06:55'),
+(76, 150, '2016-11-29 02:07:01', '2016-11-29 02:07:01'),
+(77, 123, '2016-11-29 03:18:54', '2016-11-29 03:18:54'),
+(78, 124, '2016-11-29 04:11:31', '2016-11-29 04:11:31'),
+(79, 125, '2016-11-29 04:28:30', '2016-11-29 04:28:30'),
+(80, 126, '2016-11-29 04:35:27', '2016-11-29 04:35:27'),
+(81, 127, '2016-11-29 04:46:00', '2016-11-29 04:46:00'),
+(82, 128, '2016-11-29 04:59:03', '2016-11-29 04:59:03'),
+(83, 129, '2016-11-29 05:02:40', '2016-11-29 05:02:40'),
+(84, 130, '2016-11-29 05:06:02', '2016-11-29 05:06:02'),
+(85, 131, '2016-11-29 05:08:30', '2016-11-29 05:08:30'),
+(86, 132, '2016-11-29 05:10:40', '2016-11-29 05:10:40'),
+(87, 133, '2016-11-29 05:12:32', '2016-11-29 05:12:32'),
+(88, 63, '2016-11-29 07:26:42', '2016-11-29 07:26:42'),
+(89, 64, '2016-11-29 07:31:37', '2016-11-29 07:31:37'),
+(90, 65, '2016-11-29 07:34:20', '2016-11-29 07:34:20');
 
 -- --------------------------------------------------------
 
@@ -247,15 +451,16 @@ INSERT INTO `pekerjaan` (`id_p`, `id_k`, `updated_at`, `created_at`) VALUES
 -- Table structure for table `pengguna`
 --
 
-CREATE TABLE `pengguna` (
-  `id_u` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pengguna` (
+  `id_u` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `nama_lengkap` varchar(255) NOT NULL,
   `level` enum('admin','member') NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_u`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `pengguna`
@@ -270,8 +475,8 @@ INSERT INTO `pengguna` (`id_u`, `username`, `password`, `nama_lengkap`, `level`,
 -- Table structure for table `pylon`
 --
 
-CREATE TABLE `pylon` (
-  `id_py` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pylon` (
+  `id_py` int(11) NOT NULL AUTO_INCREMENT,
   `id_p` int(11) DEFAULT NULL,
   `survey_py` date DEFAULT NULL,
   `montage_py` tinyint(1) DEFAULT NULL,
@@ -287,8 +492,9 @@ CREATE TABLE `pylon` (
   `payment_py` double DEFAULT NULL,
   `tanggal_payment_py` date DEFAULT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_py`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=119 ;
 
 --
 -- Dumping data for table `pylon`
@@ -296,7 +502,94 @@ CREATE TABLE `pylon` (
 
 INSERT INTO `pylon` (`id_py`, `id_p`, `survey_py`, `montage_py`, `file_py`, `id_b`, `sticker_py`, `pemasangan_py`, `foto_pemasangan_py`, `file_foto_py`, `bast_py`, `bapp_py`, `nama_tukang_py`, `payment_py`, `tanggal_payment_py`, `updated_at`, `created_at`) VALUES
 (1, 2, '2016-11-02', 0, '44dd79d92492eedf405ee619baba4eb1.doc', 6, NULL, NULL, NULL, '6bf07c40ce998aec9b8875846215dfa8.jpg', NULL, NULL, 'Sopo', NULL, NULL, '2016-11-18 13:52:41', '2016-11-18 09:37:54'),
-(2, 2, '2016-11-02', 0, 'b7fc1a4a1fa03a520e9ef5a1718156b5.doc', 7, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-18 13:26:55', '2016-11-18 13:26:55');
+(2, 2, '2016-11-02', 0, 'b7fc1a4a1fa03a520e9ef5a1718156b5.doc', 7, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-18 13:26:55', '2016-11-18 13:26:55'),
+(3, 3, '2016-11-01', 1, '', 8, '2016-11-22', '2016-11-30', NULL, '', '2016-11-30', '2016-11-30', 'RATNO', 2400000, '2016-11-29', '2016-11-22 02:23:19', '2016-11-22 02:23:19'),
+(4, 6, '2016-11-08', 1, '', 19, '2016-11-16', '2016-11-25', NULL, '', '2016-11-25', '2016-11-25', NULL, NULL, NULL, '2016-11-22 04:44:14', '2016-11-22 04:38:28'),
+(6, 7, '2016-11-03', 1, '', 19, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-22 04:54:16', '2016-11-22 04:54:16'),
+(7, 8, '2016-08-02', 1, '', 8, '2016-08-31', '2016-09-02', '2016-09-02', '', '2016-09-02', '2016-09-30', 'RATNO', 2400000, '2016-11-29', '2016-11-22 06:51:47', '2016-11-22 06:51:47'),
+(9, 11, NULL, 1, '', 16, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-22 07:21:19', '2016-11-22 07:20:56'),
+(10, 12, NULL, 1, '', 18, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-22 07:22:13', '2016-11-22 07:22:13'),
+(11, 12, NULL, 1, '', 13, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-22 07:22:32', '2016-11-22 07:22:32'),
+(12, 12, NULL, 1, '', 19, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-22 07:22:53', '2016-11-22 07:22:53'),
+(13, 11, NULL, 1, '', 13, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-22 07:23:30', '2016-11-22 07:23:30'),
+(14, 11, NULL, 1, '', 19, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-22 07:23:41', '2016-11-22 07:23:41'),
+(15, 13, NULL, 0, '', 6, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-23 02:04:15', '2016-11-23 02:04:15'),
+(16, 14, '2015-12-01', 1, '', 18, '2016-01-25', '2016-02-02', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-23 07:54:39', '2016-11-23 07:54:39'),
+(17, 14, '2015-12-01', 1, '', 13, '2016-01-25', '2016-02-02', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-23 07:56:53', '2016-11-23 07:56:53'),
+(18, 14, '2015-12-01', 1, '', 19, '2016-01-25', '2016-02-02', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-23 07:57:46', '2016-11-23 07:57:46'),
+(19, 15, '2015-12-01', 1, '', 18, '2016-01-25', '2016-02-02', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-23 08:07:08', '2016-11-23 08:07:08'),
+(20, 15, '2015-12-01', 1, '', 13, '2016-01-25', '2016-02-02', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-23 08:07:53', '2016-11-23 08:07:53'),
+(21, 15, '2015-12-01', 1, '', 19, '2016-01-25', '2016-02-02', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-23 08:12:14', '2016-11-23 08:12:14'),
+(22, 16, '2015-12-01', 1, '', 18, '2016-01-25', '2016-02-02', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-23 08:17:16', '2016-11-23 08:17:16'),
+(23, 16, '2015-12-01', 1, '', 13, '2016-01-25', '2016-02-02', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-23 08:18:05', '2016-11-23 08:18:05'),
+(24, 16, '2015-12-01', 1, '', 19, '2016-01-25', '2016-02-02', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-23 08:18:58', '2016-11-23 08:18:58'),
+(25, 17, '2015-12-01', 1, '', 16, '2016-01-25', '2016-02-02', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-23 08:32:32', '2016-11-23 08:32:32'),
+(26, 17, '2015-12-01', 1, '', 13, '2016-01-25', '2016-02-02', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-23 08:33:38', '2016-11-23 08:33:38'),
+(27, 18, '2015-12-01', 1, '', 16, '2016-01-10', '2016-02-01', '2016-02-02', '', '2016-05-20', '2016-05-20', 'RATNO', 2400000, '2016-05-25', '2016-11-24 02:06:04', '2016-11-24 02:06:04'),
+(28, 18, '2015-12-01', 1, '', 13, '2016-01-07', '2016-05-11', '2016-05-11', '', '2016-05-18', '2016-05-18', 'RATNO', 250000, '2016-05-25', '2016-11-24 02:08:41', '2016-11-24 02:07:31'),
+(29, 18, '2015-12-01', 1, '', 19, '2016-01-02', '2016-05-19', '2016-05-19', '', '2016-06-01', '2016-06-02', 'RATNO', 250000, '2016-05-25', '2016-11-24 02:10:22', '2016-11-24 02:10:22'),
+(30, 21, '2015-12-09', 1, '', 18, NULL, '2016-05-19', '2016-05-19', '', '2016-05-19', '2016-05-19', 'RATNO', 1250000, '2016-05-25', '2016-11-24 02:20:12', '2016-11-24 02:20:12'),
+(31, 21, '2015-12-02', 1, '', 13, NULL, NULL, NULL, '', '2016-05-19', '2016-05-19', 'RATNO', 250000, '2016-05-25', '2016-11-24 02:21:11', '2016-11-24 02:20:55'),
+(32, 21, '2015-12-04', 1, '', 19, NULL, NULL, NULL, '', '2016-05-19', '2016-05-19', 'RATNO', 250000, '2016-05-25', '2016-11-24 02:21:56', '2016-11-24 02:21:56'),
+(33, 20, '2015-12-10', 1, '', 17, '2016-05-02', '2016-05-20', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 02:24:35', '2016-11-24 02:24:35'),
+(34, 22, '2015-12-03', 1, '', 16, NULL, NULL, NULL, '', '2016-05-19', '2016-05-19', 'RATNO', 2400000, '2016-05-25', '2016-11-24 02:28:22', '2016-11-24 02:28:22'),
+(35, 24, '2015-12-10', 1, '', 17, '2016-05-02', '2016-05-20', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 02:30:00', '2016-11-24 02:30:00'),
+(36, 25, '2015-12-10', 1, '', 17, '2016-05-02', '2016-05-20', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 02:32:16', '2016-11-24 02:32:16'),
+(37, 22, '2015-11-02', 1, '', 13, NULL, '2016-05-19', NULL, '', '2016-05-19', '2016-05-19', 'RATNO', 250000, '2016-05-25', '2016-11-24 02:32:36', '2016-11-24 02:32:36'),
+(38, 26, '2015-12-10', 1, '', 9, '2016-05-02', '2017-05-20', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 02:34:02', '2016-11-24 02:34:02'),
+(39, 27, '2015-12-10', 1, '', 16, '2016-05-02', '2016-11-15', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 02:35:35', '2016-11-24 02:35:35'),
+(40, 27, '2015-12-10', 1, '', 13, '2016-05-02', '2016-05-20', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 02:36:50', '2016-11-24 02:36:50'),
+(41, 22, '2015-12-03', 1, '', 19, NULL, NULL, NULL, '', '2016-05-19', '2016-05-19', 'RATNO', 250000, '2016-05-25', '2016-11-24 02:38:54', '2016-11-24 02:38:54'),
+(42, 27, '2015-12-10', 1, '', 19, '2016-05-02', '2016-06-02', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 02:41:12', '2016-11-24 02:41:12'),
+(43, 28, '2015-12-10', 1, '', 13, '2016-05-02', '2016-06-02', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 02:50:24', '2016-11-24 02:50:24'),
+(44, 28, '2015-12-10', 0, '', 19, '2016-05-02', '2016-06-09', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 02:51:26', '2016-11-24 02:51:26'),
+(45, 29, '2015-12-01', 1, '', 18, NULL, '2016-04-07', '2016-04-07', '', '2016-05-19', '2016-05-19', 'RATNO', 1250000, '2016-05-25', '2016-11-24 02:51:46', '2016-11-24 02:51:46'),
+(46, 29, '2015-12-02', 1, '', 13, NULL, '2016-04-15', '2016-04-15', '', '2016-05-19', '2016-05-19', 'RATNO', 250000, '2016-05-25', '2016-11-24 02:52:39', '2016-11-24 02:52:39'),
+(47, 29, '2015-12-01', 1, '', 19, NULL, '2016-04-13', '2016-04-13', '', '2016-05-19', '2016-05-19', 'RATNO', 250000, '2016-05-25', '2016-11-24 02:53:28', '2016-11-24 02:53:28'),
+(48, 23, '2016-01-01', 1, '', 16, NULL, '2016-04-19', '2016-04-19', '', '2016-05-19', '2016-05-19', 'RATNO', 2400000, '2016-05-25', '2016-11-24 02:55:07', '2016-11-24 02:55:07'),
+(49, 30, '2015-12-10', 1, '', 18, '2016-06-02', '2016-06-09', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 02:55:37', '2016-11-24 02:55:37'),
+(50, 23, '2016-01-02', 1, '', 13, NULL, '2016-04-19', '2016-04-19', '', '2016-05-19', '2016-05-19', 'RATNO', 250000, '2016-05-25', '2016-11-24 02:56:23', '2016-11-24 02:56:23'),
+(51, 30, '2015-12-10', 1, '', 13, '2016-06-02', '2016-06-09', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 02:56:53', '2016-11-24 02:56:53'),
+(52, 30, '2015-12-10', 1, '', 19, '2016-06-02', '2016-06-09', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 02:57:31', '2016-11-24 02:57:31'),
+(53, 23, '2015-12-02', 1, '', 19, NULL, '2016-04-12', '2016-11-14', '', '2016-05-19', '2016-05-19', 'RATNO', 250000, '2016-05-25', '2016-11-24 02:58:26', '2016-11-24 02:58:26'),
+(54, 31, '2015-12-10', 1, '', 13, '2016-06-02', '2016-06-15', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 02:59:47', '2016-11-24 02:59:47'),
+(55, 31, '2015-12-10', 1, '', 19, '2016-06-02', '2016-06-15', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 03:00:24', '2016-11-24 03:00:24'),
+(56, 32, '2015-12-10', 1, '', 9, '2016-06-02', '2016-06-17', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 03:03:17', '2016-11-24 03:03:17'),
+(57, 33, '2016-01-01', 1, '', 16, NULL, '2016-04-19', '2016-04-19', '', '2016-05-19', '1919-06-19', 'RATNO', 2400000, '2016-05-25', '2016-11-24 03:03:57', '2016-11-24 03:03:57'),
+(58, 32, '2015-12-10', 1, '', 13, '2016-06-02', '2016-06-17', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 03:04:11', '2016-11-24 03:04:11'),
+(59, 32, NULL, 1, '', 19, '2016-06-02', '2016-06-17', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 03:05:14', '2016-11-24 03:05:14'),
+(60, 33, '2015-12-11', 1, '', 13, '2016-04-19', NULL, NULL, '', NULL, NULL, 'RATNO', 250000, NULL, '2016-11-24 03:05:18', '2016-11-24 03:05:18'),
+(61, 33, '2015-11-11', 1, '', 19, NULL, '2016-04-19', '2016-04-19', '', '2016-05-19', '2016-05-19', 'RATNO', 250000, '2016-05-25', '2016-11-24 03:06:18', '2016-11-24 03:06:18'),
+(62, 34, '2015-12-10', 1, '', 13, '2016-06-02', '2016-06-19', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 03:08:09', '2016-11-24 03:08:09'),
+(63, 34, '2015-12-10', 1, '', 19, '2016-06-02', '2016-06-19', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 03:08:57', '2016-11-24 03:08:57'),
+(64, 36, '2016-01-15', 1, '', 18, '2016-06-02', '2016-06-08', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 04:06:54', '2016-11-24 04:06:54'),
+(67, 37, '2016-03-01', 1, '', 8, NULL, '2016-05-18', '2016-05-18', '', '2016-05-19', '2016-05-19', NULL, 2400000, '2016-05-25', '2016-11-24 07:43:32', '2016-11-24 07:37:21'),
+(91, 39, '2015-12-10', 1, '', 13, '2015-06-02', '2016-06-15', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 08:16:17', '2016-11-24 08:16:17'),
+(92, 39, '2015-12-10', 1, '', 19, '2016-06-02', '2016-06-15', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 08:17:21', '2016-11-24 08:17:21'),
+(93, 40, '2015-12-10', 1, '', 13, '2016-06-02', '2016-06-17', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 08:20:32', '2016-11-24 08:20:32'),
+(94, 40, '2015-12-10', 1, '', 19, '2016-06-02', '2016-06-17', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 08:21:58', '2016-11-24 08:21:58'),
+(95, 38, '2015-12-10', 1, '', 18, '2016-06-02', '2016-06-15', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 08:36:11', '2016-11-24 08:36:11'),
+(96, 42, '2016-03-04', 1, '', 10, NULL, '2016-05-20', '2016-05-20', '', '2016-05-25', '2016-05-25', 'RATNO', 1550000, '2016-05-25', '2016-11-25 03:00:46', '2016-11-25 03:00:46'),
+(97, 43, '2016-03-23', 1, '', 10, NULL, '2016-05-25', '2016-05-25', '', '2016-05-25', '2016-05-25', 'RATNO', 1550000, '2016-05-25', '2016-11-25 03:03:36', '2016-11-25 03:03:36'),
+(99, 50, '2016-01-15', 1, '', 18, '2016-06-26', '2016-06-28', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-25 04:11:16', '2016-11-25 04:11:16'),
+(100, 51, '2016-03-23', 1, '', 16, NULL, '2016-05-27', '2016-05-27', '', '2016-05-29', '2016-05-29', 'RATNO', 2400000, '2016-05-25', '2016-11-25 07:02:31', '2016-11-25 07:02:31'),
+(101, 52, '2016-03-10', 1, '', 16, NULL, '2016-05-27', '2016-05-27', '', '2016-05-31', '2016-05-31', 'RATNO', 2400000, '2016-05-25', '2016-11-25 07:04:28', '2016-11-25 07:04:28'),
+(102, 54, '2016-03-24', 1, '', 16, NULL, '2016-05-21', '2016-05-21', '', '2016-05-27', '2016-05-27', 'RATNO', 2400000, '2016-05-25', '2016-11-25 07:28:43', '2016-11-25 07:28:43'),
+(103, 54, '2016-03-30', 0, '', 13, NULL, '2016-05-23', '2016-05-23', '', '2016-05-23', '2016-05-23', NULL, 250000, '2016-05-25', '2016-11-25 07:34:18', '2016-11-25 07:34:18'),
+(104, 54, '2016-03-09', 1, '', 19, NULL, '2016-05-27', '2016-05-27', '', '2016-05-27', '2016-05-27', 'RATNO', 250000, '2016-05-25', '2016-11-25 07:35:31', '2016-11-25 07:35:31'),
+(105, 55, '2016-03-23', 1, '', 18, NULL, '2016-05-12', '2016-05-12', '', '2016-05-13', '2016-05-13', 'RATNO', 1250000, '2016-05-25', '2016-11-25 07:37:13', '2016-11-25 07:37:13'),
+(106, 55, '2016-03-22', 0, '', 13, NULL, '2016-05-26', '2016-05-26', '', '2016-05-26', '2016-05-26', 'RATNO', 250000, '2016-05-25', '2016-11-25 07:38:15', '2016-11-25 07:38:15'),
+(107, 55, '2016-03-23', 1, '', 19, NULL, '2016-05-23', '2016-05-23', '', '2016-05-24', '2016-05-24', 'RATNO', 250000, '2016-05-25', '2016-11-25 07:38:58', '2016-11-25 07:38:58'),
+(108, 56, '2016-03-09', 1, '', 13, NULL, '2016-05-26', '2016-05-26', '', '2016-05-26', '2016-05-26', 'RATNO', 250000, '2016-05-25', '2016-11-25 07:40:43', '2016-11-25 07:40:43'),
+(109, 56, '2016-03-23', 1, '', 19, NULL, '2016-05-07', '2016-05-07', '', '2016-05-07', '2016-05-07', 'RATNO', 250000, '2016-05-25', '2016-11-25 07:41:32', '2016-11-25 07:41:32'),
+(110, 57, '2016-03-23', 1, '', 13, NULL, '2016-05-25', '2016-05-25', '', '2016-05-25', '2016-05-25', 'RATNO', 250000, '2016-05-25', '2016-11-25 07:46:50', '2016-11-25 07:46:50'),
+(111, 57, '2016-03-17', 1, '', 19, NULL, '2016-05-23', '2016-05-23', '', '2016-05-25', '2016-05-25', 'RATNO', 250000, '2016-05-25', '2016-11-25 07:53:34', '2016-11-25 07:53:34'),
+(113, 60, '2016-01-15', 1, '', 18, '2016-06-26', '2016-07-04', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-28 02:59:54', '2016-11-28 02:59:54'),
+(114, 61, '2016-01-15', 1, '', 17, '2016-06-26', '2016-07-11', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-28 03:23:12', '2016-11-28 03:23:12'),
+(115, 88, '2015-11-05', 1, '', 10, '2016-05-02', '2016-05-09', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 07:29:49', '2016-11-29 07:29:49'),
+(116, 89, '2015-11-05', 1, '', 10, '2016-05-02', '2016-05-11', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 07:32:57', '2016-11-29 07:32:57'),
+(117, 61, '2016-03-02', 1, '', 13, NULL, '2016-04-13', '2016-04-13', '', '2016-05-31', '2016-05-31', 'RATNO', NULL, NULL, '2016-12-05 03:41:35', '2016-12-05 03:41:35'),
+(118, 61, '2016-04-13', 1, '', 19, NULL, '2016-05-24', '2016-05-24', '', '2016-05-31', '2016-05-31', 'RATNO', NULL, NULL, '2016-12-05 03:43:36', '2016-12-05 03:43:36');
 
 -- --------------------------------------------------------
 
@@ -304,8 +597,8 @@ INSERT INTO `pylon` (`id_py`, `id_p`, `survey_py`, `montage_py`, `file_py`, `id_
 -- Table structure for table `repair_detail`
 --
 
-CREATE TABLE `repair_detail` (
-  `id_repair_detail` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `repair_detail` (
+  `id_repair_detail` int(11) NOT NULL AUTO_INCREMENT,
   `id_repair_pekerjaan` int(11) DEFAULT NULL,
   `survey_repair_detail` date DEFAULT NULL,
   `montage_repair_detail` tinyint(1) DEFAULT NULL,
@@ -321,8 +614,9 @@ CREATE TABLE `repair_detail` (
   `payment_repair_detail` double DEFAULT NULL,
   `tanggal_payment_repair_detail` date DEFAULT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_repair_detail`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `repair_detail`
@@ -331,7 +625,8 @@ CREATE TABLE `repair_detail` (
 INSERT INTO `repair_detail` (`id_repair_detail`, `id_repair_pekerjaan`, `survey_repair_detail`, `montage_repair_detail`, `file_repair_detail`, `id_repair_subkon`, `sticker_repair_detail`, `pemasangan_repair_detail`, `foto_pemasangan_repair_detail`, `file_foto_repair_detail`, `bast_repair_detail`, `bapp_repair_detail`, `nama_tukang_repair_detail`, `payment_repair_detail`, `tanggal_payment_repair_detail`, `updated_at`, `created_at`) VALUES
 (1, 3, '2016-11-01', 0, '2b0dec33d840fd573a818edd723587c9.pdf', 6, '2016-11-22', '2016-11-29', '2016-12-06', 'a14115f370ac55a7510a8b46732ae611.jpg', '2016-11-25', '2016-12-08', 'sdsad', 5800000, '2016-12-01', '2016-11-18 14:30:17', '2016-11-12 20:44:37'),
 (2, 3, '2016-11-10', 0, NULL, 6, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-12 20:51:16', '2016-11-12 20:51:16'),
-(3, 3, NULL, 0, '57f219efd1ba9760b83b5dc455e924af.pdf', 6, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-18 14:32:13', '2016-11-18 14:32:13');
+(3, 3, NULL, 0, '57f219efd1ba9760b83b5dc455e924af.pdf', 6, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-18 14:32:13', '2016-11-18 14:32:13'),
+(4, 4, NULL, 1, '', 19, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-22 08:16:26', '2016-11-22 08:16:26');
 
 -- --------------------------------------------------------
 
@@ -339,14 +634,15 @@ INSERT INTO `repair_detail` (`id_repair_detail`, `id_repair_pekerjaan`, `survey_
 -- Table structure for table `repair_harga`
 --
 
-CREATE TABLE `repair_harga` (
-  `id_repair_harga` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `repair_harga` (
+  `id_repair_harga` int(11) NOT NULL AUTO_INCREMENT,
   `id_repair_subkon` int(11) NOT NULL,
   `id_z` int(11) NOT NULL,
   `harga_repair_harga` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_repair_harga`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=74 ;
 
 --
 -- Dumping data for table `repair_harga`
@@ -417,7 +713,8 @@ INSERT INTO `repair_harga` (`id_repair_harga`, `id_repair_subkon`, `id_z`, `harg
 (69, 15, 6, 38500000, '2016-10-01 00:00:00', '2016-10-01 00:00:00'),
 (70, 16, 6, 28500000, '2016-10-01 00:00:00', '2016-10-01 00:00:00'),
 (71, 17, 6, 22200000, '2016-10-01 00:00:00', '2016-10-01 00:00:00'),
-(72, 18, 6, 8200000, '2016-10-01 00:00:00', '2016-10-01 00:00:00');
+(72, 18, 6, 8200000, '2016-10-01 00:00:00', '2016-10-01 00:00:00'),
+(73, 19, 4, 3500000, '2016-11-22 08:15:32', '2016-11-22 08:15:32');
 
 -- --------------------------------------------------------
 
@@ -425,12 +722,13 @@ INSERT INTO `repair_harga` (`id_repair_harga`, `id_repair_subkon`, `id_z`, `harg
 -- Table structure for table `repair_pekerjaan`
 --
 
-CREATE TABLE `repair_pekerjaan` (
-  `id_repair_pekerjaan` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `repair_pekerjaan` (
+  `id_repair_pekerjaan` int(11) NOT NULL AUTO_INCREMENT,
   `id_k` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_repair_pekerjaan`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `repair_pekerjaan`
@@ -438,7 +736,8 @@ CREATE TABLE `repair_pekerjaan` (
 
 INSERT INTO `repair_pekerjaan` (`id_repair_pekerjaan`, `id_k`, `updated_at`, `created_at`) VALUES
 (2, 15, '2016-10-25 23:34:23', '2016-10-25 23:34:23'),
-(3, 14, '2016-11-14 08:51:45', '2016-11-11 09:32:19');
+(3, 14, '2016-11-14 08:51:45', '2016-11-11 09:32:19'),
+(4, 57, '2016-11-22 08:16:08', '2016-11-22 08:16:08');
 
 -- --------------------------------------------------------
 
@@ -446,20 +745,22 @@ INSERT INTO `repair_pekerjaan` (`id_repair_pekerjaan`, `id_k`, `updated_at`, `cr
 -- Table structure for table `repair_relasi_spk`
 --
 
-CREATE TABLE `repair_relasi_spk` (
-  `id_repair_relasi_spk` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `repair_relasi_spk` (
+  `id_repair_relasi_spk` int(11) NOT NULL AUTO_INCREMENT,
   `id_repair_spk` int(11) NOT NULL,
   `id_repair_pekerjaan` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_repair_relasi_spk`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `repair_relasi_spk`
 --
 
 INSERT INTO `repair_relasi_spk` (`id_repair_relasi_spk`, `id_repair_spk`, `id_repair_pekerjaan`, `updated_at`, `created_at`) VALUES
-(8, 6, 3, '2016-11-13 20:20:20', '2016-11-13 20:20:20');
+(8, 6, 3, '2016-11-13 20:20:20', '2016-11-13 20:20:20'),
+(9, 7, 4, '2016-11-22 08:18:07', '2016-11-22 08:18:07');
 
 -- --------------------------------------------------------
 
@@ -467,8 +768,8 @@ INSERT INTO `repair_relasi_spk` (`id_repair_relasi_spk`, `id_repair_spk`, `id_re
 -- Table structure for table `repair_spk`
 --
 
-CREATE TABLE `repair_spk` (
-  `id_repair_spk` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `repair_spk` (
+  `id_repair_spk` int(11) NOT NULL AUTO_INCREMENT,
   `id_k` int(11) DEFAULT NULL,
   `judul_repair_spk` varchar(255) DEFAULT NULL,
   `no_pengajuan_repair_spk` varchar(255) DEFAULT NULL,
@@ -477,18 +778,21 @@ CREATE TABLE `repair_spk` (
   `tanggal_pengajuan_repair_spk` date DEFAULT NULL,
   `tanggal_repair_spk` date DEFAULT NULL,
   `tanggal_invoice` date DEFAULT NULL,
+  `tanggal_payment_invoice_repair_spk` date NOT NULL,
   `id_k_logistik` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_repair_spk`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `repair_spk`
 --
 
-INSERT INTO `repair_spk` (`id_repair_spk`, `id_k`, `judul_repair_spk`, `no_pengajuan_repair_spk`, `no_repair_spk`, `no_invoice`, `tanggal_pengajuan_repair_spk`, `tanggal_repair_spk`, `tanggal_invoice`, `id_k_logistik`, `updated_at`, `created_at`) VALUES
-(5, 14, 'Pengadaan dan Pemasangan', '01/Pengajuan/X/2016', 'B.0925.P-MAT/PGD/08/2014', '5 - 1611085', '2016-10-25', '2016-10-27', '2016-11-08', 12, '2016-11-08 14:44:00', '2016-10-26 00:29:24'),
-(6, 14, 'Pengerjaan', '11223344', '12333324', '6 - 1611146', '2016-11-29', '2016-11-22', '2016-11-14', 12, '2016-11-14 08:51:02', '2016-11-13 19:32:24');
+INSERT INTO `repair_spk` (`id_repair_spk`, `id_k`, `judul_repair_spk`, `no_pengajuan_repair_spk`, `no_repair_spk`, `no_invoice`, `tanggal_pengajuan_repair_spk`, `tanggal_repair_spk`, `tanggal_invoice`, `tanggal_payment_invoice_repair_spk`, `id_k_logistik`, `updated_at`, `created_at`) VALUES
+(5, 14, 'Pengadaan dan Pemasangan', '01/Pengajuan/X/2016', 'B.0925.P-MAT/PGD/08/2014', '5 - 1611085', '2016-10-25', '2016-10-27', '2016-11-08', '0000-00-00', 12, '2016-11-08 14:44:00', '2016-10-26 00:29:24'),
+(6, 0, 'Pengerjaan', '11223344', '12333324', '6 - 1611216', '2016-11-29', '2016-11-22', '2016-11-21', '1900-12-22', 0, '2016-11-23 08:46:23', '2016-11-13 19:32:24'),
+(7, 57, 'Relokasi Pylon Kecil Type Alcom', ' 45 - 171116 - 01', NULL, '7 - 1611227', '2016-11-06', NULL, '2016-11-22', '0000-00-00', 45, '2016-11-22 08:19:36', '2016-11-22 08:18:01');
 
 -- --------------------------------------------------------
 
@@ -496,14 +800,15 @@ INSERT INTO `repair_spk` (`id_repair_spk`, `id_k`, `judul_repair_spk`, `no_penga
 -- Table structure for table `repair_subkon`
 --
 
-CREATE TABLE `repair_subkon` (
-  `id_repair_subkon` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `repair_subkon` (
+  `id_repair_subkon` int(11) NOT NULL AUTO_INCREMENT,
   `kode_repair_subkon` varchar(11) NOT NULL,
   `nama_repair_subkon` varchar(255) NOT NULL,
   `harga_repair_subkon` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_repair_subkon`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=20 ;
 
 --
 -- Dumping data for table `repair_subkon`
@@ -522,7 +827,8 @@ INSERT INTO `repair_subkon` (`id_repair_subkon`, `kode_repair_subkon`, `nama_rep
 (15, 'B', 'Pylon ATM tipe B / Alcom sedang', 3300000, '2016-10-25 23:16:51', '2016-10-25 23:16:51'),
 (16, 'C-1', 'Pylon ATM tipe C 1 / Alcom kecil', 2400000, '2016-10-25 23:17:06', '2016-10-25 23:17:06'),
 (17, 'C-2', 'Pylon ATM tipe C 2 - Tiang SS 5"', 1550000, '2016-10-25 23:17:19', '2016-10-25 23:17:19'),
-(18, 'D', 'Pylon ATM tipe D ', 1250000, '2016-10-25 23:17:33', '2016-10-25 23:17:33');
+(18, 'D', 'Pylon ATM tipe D ', 1250000, '2016-10-25 23:17:33', '2016-10-25 23:17:33'),
+(19, 'Relokasi', 'Relokasi Titik', 3500000, '2016-11-22 08:15:00', '2016-11-22 08:15:00');
 
 -- --------------------------------------------------------
 
@@ -530,20 +836,95 @@ INSERT INTO `repair_subkon` (`id_repair_subkon`, `kode_repair_subkon`, `nama_rep
 -- Table structure for table `r_sp`
 --
 
-CREATE TABLE `r_sp` (
-  `id_rsp` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `r_sp` (
+  `id_rsp` int(11) NOT NULL AUTO_INCREMENT,
   `id_sp` int(11) NOT NULL,
   `id_p` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_rsp`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=90 ;
 
 --
 -- Dumping data for table `r_sp`
 --
 
 INSERT INTO `r_sp` (`id_rsp`, `id_sp`, `id_p`, `updated_at`, `created_at`) VALUES
-(5, 5, 2, '2016-10-26 00:38:16', '2016-10-26 00:38:16');
+(5, 5, 2, '2016-10-26 00:38:16', '2016-10-26 00:38:16'),
+(6, 6, 3, '2016-11-22 02:28:54', '2016-11-22 02:28:54'),
+(7, 7, 4, '2016-11-22 02:51:10', '2016-11-22 02:51:10'),
+(8, 8, 6, '2016-11-22 04:31:36', '2016-11-22 04:31:36'),
+(10, 11, 7, '2016-11-22 04:55:10', '2016-11-22 04:55:10'),
+(11, 12, 8, '2016-11-22 06:58:48', '2016-11-22 06:58:48'),
+(12, 12, 9, '2016-11-22 06:59:34', '2016-11-22 06:59:34'),
+(13, 12, 10, '2016-11-22 06:59:51', '2016-11-22 06:59:51'),
+(17, 13, 11, '2016-11-22 07:36:19', '2016-11-22 07:36:19'),
+(18, 14, 13, '2016-11-23 02:06:33', '2016-11-23 02:06:33'),
+(19, 15, 14, '2016-11-23 08:04:20', '2016-11-23 08:04:20'),
+(20, 16, 15, '2016-11-23 08:15:27', '2016-11-23 08:15:27'),
+(21, 17, 16, '2016-11-23 08:24:00', '2016-11-23 08:24:00'),
+(22, 18, 21, '2016-11-24 03:21:04', '2016-11-24 03:21:04'),
+(23, 18, 18, '2016-11-24 03:21:20', '2016-11-24 03:21:20'),
+(24, 18, 22, '2016-11-24 03:21:44', '2016-11-24 03:21:44'),
+(25, 31, 24, '2016-11-24 03:22:01', '2016-11-24 03:22:01'),
+(26, 18, 29, '2016-11-24 03:22:08', '2016-11-24 03:22:08'),
+(27, 18, 23, '2016-11-24 03:22:25', '2016-11-24 03:22:25'),
+(28, 18, 33, '2016-11-24 03:22:58', '2016-11-24 03:22:58'),
+(29, 32, 25, '2016-11-24 03:27:04', '2016-11-24 03:27:04'),
+(30, 33, 26, '2016-11-24 03:29:38', '2016-11-24 03:29:38'),
+(31, 35, 27, '2016-11-24 03:34:35', '2016-11-24 03:34:35'),
+(32, 36, 28, '2016-11-24 03:48:07', '2016-11-24 03:48:07'),
+(33, 37, 30, '2016-11-24 03:53:55', '2016-11-24 03:53:55'),
+(34, 38, 31, '2016-11-24 03:56:12', '2016-11-24 03:56:12'),
+(35, 40, 34, '2016-11-24 04:02:33', '2016-11-24 04:02:33'),
+(36, 41, 36, '2016-11-24 04:40:30', '2016-11-24 04:40:30'),
+(37, 30, 19, '2016-11-24 07:48:27', '2016-11-24 07:48:27'),
+(38, 30, 20, '2016-11-24 07:49:15', '2016-11-24 07:49:15'),
+(39, 44, 37, '2016-11-24 08:10:43', '2016-11-24 08:10:43'),
+(41, 45, 39, '2016-11-24 08:31:52', '2016-11-24 08:31:52'),
+(42, 45, 40, '2016-11-24 08:32:17', '2016-11-24 08:32:17'),
+(44, 45, 38, '2016-11-24 08:38:21', '2016-11-24 08:38:21'),
+(45, 46, 42, '2016-11-25 03:11:08', '2016-11-25 03:11:08'),
+(46, 46, 43, '2016-11-25 03:11:26', '2016-11-25 03:11:26'),
+(47, 46, 44, '2016-11-25 03:11:49', '2016-11-25 03:11:49'),
+(48, 47, 46, '2016-11-25 03:49:29', '2016-11-25 03:49:29'),
+(49, 47, 47, '2016-11-25 03:50:30', '2016-11-25 03:50:30'),
+(50, 47, 48, '2016-11-25 03:50:47', '2016-11-25 03:50:47'),
+(51, 47, 49, '2016-11-25 03:51:02', '2016-11-25 03:51:02'),
+(52, 47, 41, '2016-11-25 04:02:16', '2016-11-25 04:02:16'),
+(53, 48, 51, '2016-11-25 08:08:46', '2016-11-25 08:08:46'),
+(54, 48, 52, '2016-11-25 08:14:56', '2016-11-25 08:14:56'),
+(56, 48, 54, '2016-11-25 08:16:31', '2016-11-25 08:16:31'),
+(57, 48, 55, '2016-11-25 08:17:02', '2016-11-25 08:17:02'),
+(58, 48, 56, '2016-11-25 08:18:06', '2016-11-25 08:18:06'),
+(59, 48, 57, '2016-11-25 08:18:17', '2016-11-25 08:18:17'),
+(60, 48, 58, '2016-11-25 08:18:30', '2016-11-25 08:18:30'),
+(61, 49, 50, '2016-11-28 03:48:35', '2016-11-28 03:48:35'),
+(62, 49, 60, '2016-11-28 03:49:47', '2016-11-28 03:49:47'),
+(63, 49, 61, '2016-11-28 03:50:33', '2016-11-28 03:50:33'),
+(64, 50, 67, '2016-11-29 02:35:10', '2016-11-29 02:35:10'),
+(65, 50, 68, '2016-11-29 02:35:20', '2016-11-29 02:35:20'),
+(66, 50, 69, '2016-11-29 02:35:30', '2016-11-29 02:35:30'),
+(67, 50, 70, '2016-11-29 02:35:38', '2016-11-29 02:35:38'),
+(68, 51, 71, '2016-11-29 02:42:27', '2016-11-29 02:42:27'),
+(69, 51, 72, '2016-11-29 02:42:35', '2016-11-29 02:42:35'),
+(70, 51, 73, '2016-11-29 02:42:44', '2016-11-29 02:42:44'),
+(71, 52, 62, '2016-11-29 07:09:49', '2016-11-29 07:09:49'),
+(73, 52, 63, '2016-11-29 07:12:29', '2016-11-29 07:12:29'),
+(74, 52, 64, '2016-11-29 07:13:39', '2016-11-29 07:13:39'),
+(75, 52, 65, '2016-11-29 07:14:13', '2016-11-29 07:14:13'),
+(77, 52, 66, '2016-11-29 07:16:46', '2016-11-29 07:16:46'),
+(78, 52, 77, '2016-11-29 07:17:14', '2016-11-29 07:17:14'),
+(79, 52, 78, '2016-11-29 07:17:41', '2016-11-29 07:17:41'),
+(80, 52, 79, '2016-11-29 07:18:11', '2016-11-29 07:18:11'),
+(81, 52, 80, '2016-11-29 07:18:31', '2016-11-29 07:18:31'),
+(82, 52, 81, '2016-11-29 07:18:54', '2016-11-29 07:18:54'),
+(83, 52, 82, '2016-11-29 07:19:31', '2016-11-29 07:19:31'),
+(85, 52, 84, '2016-11-29 07:20:21', '2016-11-29 07:20:21'),
+(86, 52, 85, '2016-11-29 07:20:48', '2016-11-29 07:20:48'),
+(87, 52, 86, '2016-11-29 07:21:16', '2016-11-29 07:21:16'),
+(88, 52, 87, '2016-11-29 07:21:48', '2016-11-29 07:21:48'),
+(89, 52, 83, '2016-11-29 07:24:37', '2016-11-29 07:24:37');
 
 -- --------------------------------------------------------
 
@@ -551,8 +932,8 @@ INSERT INTO `r_sp` (`id_rsp`, `id_sp`, `id_p`, `updated_at`, `created_at`) VALUE
 -- Table structure for table `signage`
 --
 
-CREATE TABLE `signage` (
-  `id_s` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `signage` (
+  `id_s` int(11) NOT NULL AUTO_INCREMENT,
   `id_p` int(11) NOT NULL,
   `survey_s` date DEFAULT NULL,
   `montage_s` tinyint(1) DEFAULT NULL,
@@ -570,15 +951,49 @@ CREATE TABLE `signage` (
   `payment_s` double DEFAULT NULL,
   `tanggal_payment_s` date DEFAULT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_s`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=47 ;
 
 --
 -- Dumping data for table `signage`
 --
 
 INSERT INTO `signage` (`id_s`, `id_p`, `survey_s`, `montage_s`, `file_s`, `panjang_s`, `lebar_s`, `id_b`, `sticker_s`, `pemasangan_s`, `foto_pemasangan_s`, `file_foto_s`, `bast_s`, `bapp_s`, `nama_tukang_s`, `payment_s`, `tanggal_payment_s`, `updated_at`, `created_at`) VALUES
-(6, 2, '2016-10-28', 0, '819409d9c0e2388804aba586941d189e.doc', 2, 1, 11, '2016-10-18', '2016-10-25', '2016-10-15', '16916f1f7e51f95fceb90202b1238405.jpg', '2016-10-27', '2016-10-26', 'Joju', 750000, '2016-10-26', '2016-11-18 13:53:08', '2016-10-25 23:59:07');
+(6, 2, '2016-10-28', 0, '819409d9c0e2388804aba586941d189e.doc', 2, 1, 11, '2016-10-18', '2016-10-25', '2016-10-15', '16916f1f7e51f95fceb90202b1238405.jpg', '2016-10-27', '2016-10-26', 'Joju', 750000, '2016-10-26', '2016-11-18 13:53:08', '2016-10-25 23:59:07'),
+(7, 3, '2016-11-04', 1, '', 5.4, 1.2, 11, '2016-12-22', '2016-11-26', NULL, '', '2016-12-01', '2016-12-01', 'RATNO', 4200000, '2016-12-03', '2016-11-22 02:39:02', '2016-11-22 02:26:26'),
+(8, 8, '2016-08-02', 1, '', 5.4, 1.2, 11, '2016-08-09', '2016-09-02', '2016-09-02', '', '2016-09-02', '2016-09-30', 'RATNO', 4200000, '2016-11-29', '2016-11-22 06:53:09', '2016-11-22 06:53:09'),
+(9, 9, '2016-08-03', 1, '', 4, 1, 11, '2016-08-17', '2016-09-02', '2016-09-02', '', '2016-09-30', '2016-09-30', 'RATNO', 2800000, '2016-11-29', '2016-11-22 06:54:48', '2016-11-22 06:54:48'),
+(10, 10, '2016-08-16', 1, '', 4, 1, 11, '2016-09-14', '2016-09-21', NULL, '', '2016-09-29', '2016-11-30', 'RATNO', 2800000, NULL, '2016-11-22 06:56:07', '2016-11-22 06:56:07'),
+(11, 37, '2016-03-15', 1, '', 5, 1, 11, NULL, '2016-05-28', '2016-05-28', '', '2016-05-27', '2016-05-25', 'RATNO', 3750000, '2016-05-25', '2016-11-24 07:45:21', '2016-11-24 07:45:21'),
+(12, 42, '2016-03-09', 1, '', 4, 0.9, 11, NULL, '2016-05-12', '2016-05-12', '', '2016-05-25', '2016-05-25', 'RATNO', 2700000, '2016-05-25', '2016-11-25 03:02:09', '2016-11-25 03:02:09'),
+(13, 43, NULL, 1, '', 4, 0.9, 11, NULL, '2016-05-25', '2016-05-25', '', '2016-05-25', '2016-05-25', 'RATNO', 2700000, '2016-05-25', '2016-11-25 03:04:36', '2016-11-25 03:04:36'),
+(14, 44, '2016-03-23', 1, '', 4, 1, 11, NULL, '2016-05-18', '2016-05-18', '', '2016-05-25', '2016-05-25', 'RATNO', 3000000, '2016-05-25', '2016-11-25 03:07:40', '2016-11-25 03:07:40'),
+(15, 62, '2016-08-08', 1, '', 4, 1, 11, '2016-10-24', '2016-10-22', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-28 04:28:17', '2016-11-28 04:28:17'),
+(16, 63, '2016-08-08', 1, '', 2.6, 0.9, 11, '2016-08-25', '2016-10-20', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 07:11:47', '2016-11-28 04:36:14'),
+(17, 64, '2016-08-08', 1, '', 5, 1.3, 11, '2016-08-20', '2016-10-20', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-28 04:45:18', '2016-11-28 04:45:18'),
+(18, 65, '2016-08-08', 1, '', 5, 1.1, 11, '2016-08-25', '2016-10-20', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-28 05:00:25', '2016-11-28 05:00:25'),
+(19, 67, NULL, 1, '', 5, 1.2, 11, NULL, '2016-11-02', '2016-11-02', '', '2016-11-29', '2016-11-29', 'JOHAN', 4500000, '2016-11-07', '2016-11-29 02:19:10', '2016-11-29 02:19:10'),
+(20, 68, NULL, 0, '', 4, 1, 11, NULL, '2016-11-02', NULL, '', '2016-11-29', '2016-11-29', 'JOHAN', 3000000, '2016-11-07', '2016-11-29 02:20:22', '2016-11-29 02:20:22'),
+(22, 69, NULL, 1, '', 5, 1.2, 11, NULL, '2016-11-02', '2016-11-02', '', '2016-11-29', '2016-11-29', 'JOHAN', 4500000, '2016-11-07', '2016-11-29 02:24:12', '2016-11-29 02:24:12'),
+(29, 70, NULL, 1, '', 4, 1, 11, NULL, '2016-11-02', '2016-11-02', '', '2016-11-29', '2016-11-29', 'JOHAN', 3000000, '2016-11-07', '2016-11-29 02:31:46', '2016-11-29 02:31:15'),
+(30, 71, '2016-10-01', 1, '', 5, 1, 11, NULL, '2016-11-01', '2016-11-01', '', '2016-11-29', '2016-11-29', 'JOHAN', 3750000, '2016-11-07', '2016-11-29 02:37:37', '2016-11-29 02:37:37'),
+(31, 72, '2016-09-01', 1, '', 5, 1, 11, NULL, '2016-11-01', '2016-11-01', '', '2016-11-29', '2016-11-29', 'JOHAN', 3750000, '2016-11-07', '2016-11-29 02:38:45', '2016-11-29 02:38:45'),
+(32, 73, '2016-09-01', 1, '', 3, 0.8, 11, NULL, '2016-11-01', '2016-11-01', '', '2016-11-29', '2016-11-29', 'JOHAN', 1800000, '2016-11-07', '2016-11-29 02:39:50', '2016-11-29 02:39:50'),
+(33, 77, '2016-01-15', 1, '', 4, 1, 11, '2016-10-17', '2016-10-21', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 03:34:56', '2016-11-29 03:34:56'),
+(34, 78, '2016-01-18', 1, '', 5, 1, 11, '2016-10-24', '2016-10-31', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 04:24:37', '2016-11-29 04:24:37'),
+(35, 79, '2016-01-18', 1, '', 4, 1, 11, '2016-10-24', '2016-11-01', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 04:31:46', '2016-11-29 04:31:46'),
+(36, 80, '2016-01-25', 1, '', 4, 1, 11, '2016-10-24', '2016-10-31', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 04:41:33', '2016-11-29 04:41:33'),
+(37, 81, '2016-01-25', 1, '', 8, 1, 11, '2016-08-25', '2016-10-23', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 04:54:41', '2016-11-29 04:54:41'),
+(38, 82, '2016-01-25', 1, '', 4, 1.2, 11, '2016-08-25', '2016-10-21', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 05:00:16', '2016-11-29 05:00:16'),
+(39, 83, '2016-01-25', 1, '', 4, 1, 11, '2016-08-25', '2016-10-21', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 07:23:52', '2016-11-29 05:05:08'),
+(40, 84, '2016-01-25', 1, '', 5, 1, 11, '2016-08-25', '2016-10-22', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 05:07:58', '2016-11-29 05:07:58'),
+(41, 85, '2016-01-25', 1, '', 4, 1, 11, '2016-08-25', '2016-10-22', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 05:09:59', '2016-11-29 05:09:59'),
+(42, 86, '2016-01-25', 1, '', 4, 1, 11, '2016-08-25', '2016-10-22', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 05:12:03', '2016-11-29 05:12:03'),
+(43, 87, '2016-01-25', 1, '', 4, 0.8, 11, '2016-08-25', '2016-10-21', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 05:19:36', '2016-11-29 05:19:36'),
+(44, 66, '2016-01-25', 1, '', 5, 1, 11, '2016-08-25', '2016-10-21', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 07:16:02', '2016-11-29 07:16:02'),
+(45, 88, '2015-11-05', 0, '', 4, 0.9, 11, '2016-05-02', '2016-05-09', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 07:31:19', '2016-11-29 07:31:19'),
+(46, 89, '2015-11-05', 1, '', 4, 0.9, 11, '2016-05-02', '2016-05-10', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-29 07:33:58', '2016-11-29 07:33:58');
 
 -- --------------------------------------------------------
 
@@ -586,8 +1001,8 @@ INSERT INTO `signage` (`id_s`, `id_p`, `survey_s`, `montage_s`, `file_s`, `panja
 -- Table structure for table `signage_atm`
 --
 
-CREATE TABLE `signage_atm` (
-  `id_sa` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `signage_atm` (
+  `id_sa` int(11) NOT NULL AUTO_INCREMENT,
   `id_p` int(11) DEFAULT NULL,
   `survey_sa` date DEFAULT NULL,
   `montage_sa` tinyint(1) DEFAULT NULL,
@@ -608,8 +1023,9 @@ CREATE TABLE `signage_atm` (
   `payment_sa` double DEFAULT NULL,
   `tanggal_payment_sa` date DEFAULT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_sa`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `signage_atm`
@@ -617,7 +1033,21 @@ CREATE TABLE `signage_atm` (
 
 INSERT INTO `signage_atm` (`id_sa`, `id_p`, `survey_sa`, `montage_sa`, `file_sa`, `depan_sa`, `kanan_sa`, `kiri_sa`, `belakang_sa`, `tinggi_sa`, `id_b`, `sticker_sa`, `pemasangan_sa`, `foto_pemasangan_sa`, `file_foto_sa`, `bast_sa`, `bapp_sa`, `nama_tukang_sa`, `payment_sa`, `tanggal_payment_sa`, `updated_at`, `created_at`) VALUES
 (1, 2, '2016-11-11', 0, 'b1bc7587604c913a39dddae93373c4f5.doc', NULL, NULL, NULL, NULL, NULL, 6, NULL, NULL, NULL, 'af4bb70d773c8468aa07baca999f092a.jpg', NULL, NULL, NULL, NULL, NULL, '2016-11-18 14:19:18', '2016-11-18 09:47:44'),
-(2, 2, '2016-11-16', 0, '027ef4af3643f12812dfe72fd1c4820f.pdf', NULL, NULL, NULL, NULL, NULL, 12, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-18 14:23:55', '2016-11-18 14:23:55');
+(2, 2, '2016-11-16', 0, '027ef4af3643f12812dfe72fd1c4820f.pdf', NULL, NULL, NULL, NULL, NULL, 12, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-18 14:23:55', '2016-11-18 14:23:55'),
+(3, 3, '2016-11-01', 1, '', 1.86, NULL, NULL, NULL, 0.7, 11, '2016-11-02', '2016-11-16', NULL, '', '2016-11-11', '2016-11-11', 'RATNO', 1500000, '2016-11-30', '2016-11-22 02:48:50', '2016-11-22 02:48:50'),
+(4, 4, NULL, 0, '', 1.86, NULL, NULL, NULL, 0.7, 11, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-22 02:52:37', '2016-11-22 02:52:37'),
+(7, 36, NULL, 1, '', 1.75, NULL, 1.75, NULL, 0.7, 11, '2016-06-05', '2016-06-08', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 04:09:27', '2016-11-24 04:08:35'),
+(8, 39, '2015-12-10', 1, '', 1.5, NULL, NULL, NULL, 0.7, 11, '2016-06-02', '2016-06-15', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 08:18:43', '2016-11-24 08:18:43'),
+(9, 38, '2015-12-10', 1, '', 1.75, NULL, 1.75, NULL, 0.7, 11, '2016-06-02', '2016-06-15', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-24 08:38:11', '2016-11-24 08:38:11'),
+(10, 41, '2016-01-08', 0, '', 1.9, NULL, NULL, NULL, 0.7, 11, '2016-07-03', '2016-07-10', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-25 03:17:28', '2016-11-25 03:17:28'),
+(11, 46, '2016-01-08', 1, '', 1.6, NULL, NULL, NULL, 0.7, 11, '2016-07-03', '2016-07-17', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-25 03:30:17', '2016-11-25 03:30:17'),
+(12, 47, '2016-01-10', 1, '', 2.67, 3.15, 3.15, NULL, 0.55, 11, '2016-07-03', '2016-07-12', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-25 03:35:57', '2016-11-25 03:35:57'),
+(13, 48, '2016-01-10', 1, '', 2.61, 3.3, 3.3, NULL, 0.55, 11, '2016-07-03', '2016-06-15', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-25 03:40:44', '2016-11-25 03:40:44'),
+(14, 49, '2016-01-10', 1, '', 2.6, 3.35, 3.35, NULL, 0.55, 11, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-25 03:43:28', '2016-11-25 03:42:50'),
+(15, 58, '2016-03-11', 1, '', 1.5, NULL, NULL, NULL, 0.4, 11, NULL, '2016-05-24', '2016-05-24', '', '2016-05-24', '2016-05-24', 'RATNO', 450000, '2016-05-25', '2016-11-25 08:03:36', '2016-11-25 08:03:36'),
+(16, 50, '2016-01-15', 1, '', 2.53, 3.05, 3.05, NULL, 0.5, 11, '2016-06-26', '2016-06-28', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-28 02:50:22', '2016-11-28 02:49:41'),
+(17, 60, '2016-01-15', 1, '', 2.5, 2.81, 2.81, 2.5, 0.65, 11, '2016-06-26', '2016-07-04', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-28 03:07:11', '2016-11-28 03:04:45'),
+(18, 61, '2016-01-15', 1, '', 2.35, NULL, 2.35, NULL, 0.5, 11, NULL, '2016-07-11', NULL, '', NULL, NULL, NULL, NULL, NULL, '2016-11-28 03:24:36', '2016-11-28 03:24:36');
 
 -- --------------------------------------------------------
 
@@ -625,8 +1055,8 @@ INSERT INTO `signage_atm` (`id_sa`, `id_p`, `survey_sa`, `montage_sa`, `file_sa`
 -- Table structure for table `spk`
 --
 
-CREATE TABLE `spk` (
-  `id_sp` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `spk` (
+  `id_sp` int(11) NOT NULL AUTO_INCREMENT,
   `id_k` int(11) DEFAULT NULL,
   `judul_sp` varchar(255) DEFAULT NULL,
   `no_pengajuan_sp` varchar(255) DEFAULT NULL,
@@ -635,17 +1065,29 @@ CREATE TABLE `spk` (
   `tanggal_pengajuan_sp` date DEFAULT NULL,
   `tanggal_sp` date DEFAULT NULL,
   `tanggal_invoice` date NOT NULL,
+  `tanggal_payment_invoice` date NOT NULL,
+  `tanggal_retensi_invoice` date NOT NULL,
   `id_k_logistik` int(11) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_sp`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=53 ;
 
 --
 -- Dumping data for table `spk`
 --
 
-INSERT INTO `spk` (`id_sp`, `id_k`, `judul_sp`, `no_pengajuan_sp`, `no_sp`, `no_invoice`, `tanggal_pengajuan_sp`, `tanggal_sp`, `tanggal_invoice`, `id_k_logistik`, `updated_at`, `created_at`) VALUES
-(5, 14, 'Pengadaan dan Pemasangan', '01/Pengajuan/X/2016', 'B.0925.P-MAT/PGD/08/2014', '5 - 1611085', '2016-10-25', '2016-10-27', '2016-11-08', 12, '2016-11-08 14:44:00', '2016-10-26 00:29:24');
+INSERT INTO `spk` (`id_sp`, `id_k`, `judul_sp`, `no_pengajuan_sp`, `no_sp`, `no_invoice`, `tanggal_pengajuan_sp`, `tanggal_sp`, `tanggal_invoice`, `tanggal_payment_invoice`, `tanggal_retensi_invoice`, `id_k_logistik`, `updated_at`, `created_at`) VALUES
+(12, 30, 'Pengadaan dan Pemasangan Pylon dan Signage Uker BRI KC Selong', '01/VIII/08/2016', 'B.76/KW-XI/LOG/08/2016', '55-16100001', '2016-08-01', '2016-08-25', '2016-10-03', '2016-10-07', '0000-00-00', 28, '2016-11-25 03:49:42', '2016-11-22 06:58:40'),
+(18, 53, 'Pengadaan Pylon ATM Type D, C1 Alumunium Composite, Cover ATM CSA+Teralis BRI KC Ruteng', '01/BMJ/01/2016', 'B.10/KW-XI/LOG/01/2016', '55-16060001', '2016-01-01', '2016-01-21', '2016-06-02', '2016-07-01', '2016-11-03', 28, '2016-11-25 06:21:18', '2016-11-24 03:11:13'),
+(44, 62, 'Pengadaan Pylon dan Signage Uker BRI KCP Borong', '01/BMJ/04/2016', 'B.28KW-XI/LOG/04/2016', '55-16060002', '2016-04-01', '2016-04-25', '2016-06-02', '2016-07-27', '2016-11-03', 28, '2016-11-25 06:21:49', '2016-11-24 08:10:19'),
+(45, 98, 'Pengadaan Pylon ATM Dan Cover Csa 2 + Terallis', '01/BMJ-V/2016', 'B.49/KW-XI/LOG/05/2016', '55-16070003', '2016-05-05', '2016-05-31', '2016-07-14', '2016-09-01', '0000-00-00', 28, '2016-11-25 06:22:56', '2016-11-24 08:10:31'),
+(46, 63, 'Pengadaan Pylon dan Signage Uker di BRI KC Ruteng', '02/BMJ/04/2016', 'B.29KW-XI/LOG/04/2016', '55-16060003', '2016-04-01', '2016-04-27', '2016-06-02', '2016-07-27', '2016-11-03', 28, '2016-11-25 06:23:23', '2016-11-25 03:10:47'),
+(47, 102, 'Pengadaan &amp;amp;amp;amp;amp;amp; Pemasangan Signage ATM ', '01/BMJ-VI/2016', 'B.55/KW-XI/LOG/06/2016', '55-16080001', '2016-06-12', '2016-06-30', '2016-08-01', '2016-08-01', '0000-00-00', 28, '2016-11-25 06:25:20', '2016-11-25 03:49:01'),
+(48, 75, 'Pembuatan Cover, Pylon dan Signage ATM KC Kalabahi, Ruteng, Maumere, dan Ende', '03/BMJ/04/2016', 'B.31/KW-XI/LOG/04/2016', '55-16060007', '2016-04-01', '2016-04-27', '2016-06-06', '2016-07-27', '2016-11-03', 28, '2016-11-25 08:08:25', '2016-11-25 08:08:25'),
+(49, 107, 'Pengadaan & Pemasangan Signage ATM', '02/BMJ-VI/2016', 'B.58/KW-XI/LOG/06/2016', '55-16080002', '2016-05-23', '2016-06-20', '2016-08-01', '2016-09-01', '0000-11-30', 28, '2016-12-05 03:36:48', '2016-11-28 03:48:06'),
+(50, 140, 'Pengadaan Signage di Supervisi BRI KC Gatot Subroto, Bangli dan Semarapura', '01/BMJ/11/2016', 'B.104/KW-XI/LOG/10/2016', '55-16120001', '2016-10-01', '2016-10-30', '2016-12-01', '0000-00-00', '0000-00-00', 28, '2016-11-29 02:43:12', '2016-11-29 02:34:57'),
+(52, 118, 'Pengadaan &amp;amp;amp;amp; Pemasangan Signage Uker ', '01/BMJ-X/2016', 'B.89/KW-XI/LOG/10/2016', '', '2016-09-26', '2016-10-10', '0000-00-00', '0000-00-00', '0000-00-00', 0, '2016-11-29 07:24:55', '2016-11-29 07:08:54');
 
 -- --------------------------------------------------------
 
@@ -653,242 +1095,26 @@ INSERT INTO `spk` (`id_sp`, `id_k`, `judul_sp`, `no_pengajuan_sp`, `no_sp`, `no_
 -- Table structure for table `zona`
 --
 
-CREATE TABLE `zona` (
-  `id_z` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `zona` (
+  `id_z` int(11) NOT NULL AUTO_INCREMENT,
   `nama_z` varchar(255) NOT NULL,
   `deskripsi_z` varchar(255) NOT NULL,
   `updated_at` datetime NOT NULL,
-  `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id_z`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `zona`
 --
 
 INSERT INTO `zona` (`id_z`, `nama_z`, `deskripsi_z`, `updated_at`, `created_at`) VALUES
-(2, 'I', 'Irian, Maluku, Kepri, Aceh, NTT', '2016-10-13 22:23:34', '2016-10-13 22:23:34'),
-(3, '2', 'Sulut, Gorontalo, Kaltim, Kalteng, Sulteng, Sul tenggara, Sulbar', '2016-10-25 22:55:52', '2016-10-25 22:55:52'),
+(2, 'I', 'Irian, Maluku, Kepri, Aceh', '2016-11-23 03:50:23', '2016-10-13 22:23:34'),
+(3, '2', 'Sulut, Gorontalo, Kaltim, Kalteng, Sulteng, Sul tenggara, Sulbar, NTT', '2016-11-23 03:53:33', '2016-10-25 22:55:52'),
 (4, '3', 'Medan, Padang, Pekanbaru, DPS, NTB, Kalbar, Kalsel, Sulsel', '2016-10-25 22:56:01', '2016-10-25 22:56:01'),
 (5, '4', 'Jambi, Palembang, Bengkulu, Lampung', '2016-10-25 22:56:11', '2016-10-25 22:56:11'),
 (6, '5', 'Banten, DKI Jkt, Jabar, Jateng, DIY, Jatim, Madura', '2016-10-25 22:56:19', '2016-10-25 22:56:19');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `atm`
---
-ALTER TABLE `atm`
-  ADD PRIMARY KEY (`id_a`);
-
---
--- Indexes for table `bahan`
---
-ALTER TABLE `bahan`
-  ADD PRIMARY KEY (`id_b`);
-
---
--- Indexes for table `harga_bahan`
---
-ALTER TABLE `harga_bahan`
-  ADD PRIMARY KEY (`id_hb`);
-
---
--- Indexes for table `jenis_kantor`
---
-ALTER TABLE `jenis_kantor`
-  ADD PRIMARY KEY (`id_jk`);
-
---
--- Indexes for table `kantor`
---
-ALTER TABLE `kantor`
-  ADD PRIMARY KEY (`id_k`);
-
---
--- Indexes for table `pekerjaan`
---
-ALTER TABLE `pekerjaan`
-  ADD PRIMARY KEY (`id_p`);
-
---
--- Indexes for table `pengguna`
---
-ALTER TABLE `pengguna`
-  ADD PRIMARY KEY (`id_u`);
-
---
--- Indexes for table `pylon`
---
-ALTER TABLE `pylon`
-  ADD PRIMARY KEY (`id_py`);
-
---
--- Indexes for table `repair_detail`
---
-ALTER TABLE `repair_detail`
-  ADD PRIMARY KEY (`id_repair_detail`);
-
---
--- Indexes for table `repair_harga`
---
-ALTER TABLE `repair_harga`
-  ADD PRIMARY KEY (`id_repair_harga`);
-
---
--- Indexes for table `repair_pekerjaan`
---
-ALTER TABLE `repair_pekerjaan`
-  ADD PRIMARY KEY (`id_repair_pekerjaan`);
-
---
--- Indexes for table `repair_relasi_spk`
---
-ALTER TABLE `repair_relasi_spk`
-  ADD PRIMARY KEY (`id_repair_relasi_spk`);
-
---
--- Indexes for table `repair_spk`
---
-ALTER TABLE `repair_spk`
-  ADD PRIMARY KEY (`id_repair_spk`);
-
---
--- Indexes for table `repair_subkon`
---
-ALTER TABLE `repair_subkon`
-  ADD PRIMARY KEY (`id_repair_subkon`);
-
---
--- Indexes for table `r_sp`
---
-ALTER TABLE `r_sp`
-  ADD PRIMARY KEY (`id_rsp`);
-
---
--- Indexes for table `signage`
---
-ALTER TABLE `signage`
-  ADD PRIMARY KEY (`id_s`);
-
---
--- Indexes for table `signage_atm`
---
-ALTER TABLE `signage_atm`
-  ADD PRIMARY KEY (`id_sa`);
-
---
--- Indexes for table `spk`
---
-ALTER TABLE `spk`
-  ADD PRIMARY KEY (`id_sp`);
-
---
--- Indexes for table `zona`
---
-ALTER TABLE `zona`
-  ADD PRIMARY KEY (`id_z`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `atm`
---
-ALTER TABLE `atm`
-  MODIFY `id_a` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `bahan`
---
-ALTER TABLE `bahan`
-  MODIFY `id_b` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
---
--- AUTO_INCREMENT for table `harga_bahan`
---
-ALTER TABLE `harga_bahan`
-  MODIFY `id_hb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
---
--- AUTO_INCREMENT for table `jenis_kantor`
---
-ALTER TABLE `jenis_kantor`
-  MODIFY `id_jk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `kantor`
---
-ALTER TABLE `kantor`
-  MODIFY `id_k` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
---
--- AUTO_INCREMENT for table `pekerjaan`
---
-ALTER TABLE `pekerjaan`
-  MODIFY `id_p` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `pengguna`
---
-ALTER TABLE `pengguna`
-  MODIFY `id_u` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `pylon`
---
-ALTER TABLE `pylon`
-  MODIFY `id_py` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `repair_detail`
---
-ALTER TABLE `repair_detail`
-  MODIFY `id_repair_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `repair_harga`
---
-ALTER TABLE `repair_harga`
-  MODIFY `id_repair_harga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
---
--- AUTO_INCREMENT for table `repair_pekerjaan`
---
-ALTER TABLE `repair_pekerjaan`
-  MODIFY `id_repair_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `repair_relasi_spk`
---
-ALTER TABLE `repair_relasi_spk`
-  MODIFY `id_repair_relasi_spk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `repair_spk`
---
-ALTER TABLE `repair_spk`
-  MODIFY `id_repair_spk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `repair_subkon`
---
-ALTER TABLE `repair_subkon`
-  MODIFY `id_repair_subkon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
---
--- AUTO_INCREMENT for table `r_sp`
---
-ALTER TABLE `r_sp`
-  MODIFY `id_rsp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `signage`
---
-ALTER TABLE `signage`
-  MODIFY `id_s` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `signage_atm`
---
-ALTER TABLE `signage_atm`
-  MODIFY `id_sa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `spk`
---
-ALTER TABLE `spk`
-  MODIFY `id_sp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `zona`
---
-ALTER TABLE `zona`
-  MODIFY `id_z` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
