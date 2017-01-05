@@ -91,7 +91,7 @@
                                             $harga += $harga_jual->harga_repair_harga;
                                         }
                                     }
-                                ?>
+                             ?>
                             </ul>
                         </td>
                         <td align="center">
@@ -124,7 +124,7 @@
                 <table border="1" width="100%" cellpadding="10" cellspacing="0">
                     <tr>
                         <td>
-                            Terbilang : <?php echo Terbilang($grand); ?>
+                            Terbilang : <?php echo Terbilang($grand); ?> Rupiah
                         </td>
                     </tr>
                 </table>

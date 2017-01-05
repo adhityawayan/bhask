@@ -1,8 +1,6 @@
-@extends('layouts.adminlte')
+<?php $__env->startSection('title', $title); ?>
 
-@section('title', $title)
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <section class="content-header">
     <h1>
         <?= $title ?>
@@ -23,9 +21,10 @@
                     </h3>
                 </div>
 				<div class="box-body">
-					 {!!$msg!!}
+					 <?php echo $msg; ?>
+
 					<form class="form-inline">
-					<a href="{{base_url('repair/laporan/excel/')}}" class="btn btn-primary"><i class="fa fa-print"></i> Export Excel</a>
+					<a href="<?php echo e(base_url('repair/laporan/excel/')); ?>" class="btn btn-primary"><i class="fa fa-print"></i> Export Excel</a>
 					<div class="form-group">
 					<input type="text" class="form-control" name="spk" placeholder="Cari SPK">
 					</div>
@@ -243,4 +242,5 @@
 		</div>
 	</div>
 </section>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.adminlte', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

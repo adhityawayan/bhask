@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PT. Bhaskara Madya Jaya- @yield('title') </title>
+    <title>PT. Bhaskara Madya Jaya- <?php echo $__env->yieldContent('title'); ?> </title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -59,10 +59,10 @@
             <section class="sidebar">
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="{{ base_url('uploads/avatar/default.jpg')}}" class="img-circle" alt="User Image">
+                        <img src="<?php echo e(base_url('uploads/avatar/default.jpg')); ?>" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>{{sesi('nama_lengkap')}}</p>
+                        <p><?php echo e(sesi('nama_lengkap')); ?></p>
                         <a href="<?= base_url('login/destroy') ?>" ><i class="fa fa-sign-out "></i> Logout</a>
                     </div>
                 </div>
@@ -70,48 +70,48 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="{{active_link_controller('dashboard')}}">
-                        <a href="{{ base_url('dashboard')}}">
+                    <li class="<?php echo e(active_link_controller('dashboard')); ?>">
+                        <a href="<?php echo e(base_url('dashboard')); ?>">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="{{active_link_controller('pengguna')}}">
-                        <a href="{{ base_url('pengguna')}}">
+                    <li class="<?php echo e(active_link_controller('pengguna')); ?>">
+                        <a href="<?php echo e(base_url('pengguna')); ?>">
                             <i class="fa fa-users"></i> <span>Pengguna</span>
                         </a>
                     </li>
-                    <li class="{{active_link_controller('kantor')}}">
-                        <a href="{{ base_url('kantor')}}">
+                    <li class="<?php echo e(active_link_controller('kantor')); ?>">
+                        <a href="<?php echo e(base_url('kantor')); ?>">
                             <i class="fa fa-bank"></i> <span>Kantor/ATM BRI</span>
                         </a>
                     </li>
-                    <li class="{{active_link_controller('zona')}}">
-                        <a href="{{ base_url('zona')}}">
+                    <li class="<?php echo e(active_link_controller('zona')); ?>">
+                        <a href="<?php echo e(base_url('zona')); ?>">
                             <i class="fa fa-globe"></i> <span>Zona</span>
                         </a>
                     </li>
-                    <!-- <li class="{{active_link_controller('bahan')}}">
-                        <a href="{{ base_url('bahan')}}">
+                    <!-- <li class="<?php echo e(active_link_controller('bahan')); ?>">
+                        <a href="<?php echo e(base_url('bahan')); ?>">
                             <i class="fa fa-legal"></i> <span>Sub Kontraktor</span>
                         </a>
                     </li>
-                    <li class="{{active_link_controller('harga_bahan')}}">
-                        <a href="{{ base_url('harga_bahan')}}">
+                    <li class="<?php echo e(active_link_controller('harga_bahan')); ?>">
+                        <a href="<?php echo e(base_url('harga_bahan')); ?>">
                             <i class="fa fa-money"></i> <span>Harga Jual</span>
                         </a>
                     </li>
-                    <li class="{{active_link_controller('pekerjaan')}}">
-                        <a href="{{ base_url('pekerjaan')}}">
+                    <li class="<?php echo e(active_link_controller('pekerjaan')); ?>">
+                        <a href="<?php echo e(base_url('pekerjaan')); ?>">
                             <i class="fa fa-briefcase"></i> <span>Pekerjaan</span>
                         </a>
                     </li>
-                    <li class="{{active_link_controller('spk')}}">
-                        <a href="{{ base_url('spk')}}">
+                    <li class="<?php echo e(active_link_controller('spk')); ?>">
+                        <a href="<?php echo e(base_url('spk')); ?>">
                             <i class="fa fa-wpforms"></i> <span>SPK</span>
                         </a>
                     </li>
-                    <li class="{{active_link_controller('laporan')}}">
-                        <a href="{{ base_url('laporan')}}">
+                    <li class="<?php echo e(active_link_controller('laporan')); ?>">
+                        <a href="<?php echo e(base_url('laporan')); ?>">
                             <i class="fa fa-wpforms"></i> <span>Laporan</span>
                         </a>
                     </li> -->
@@ -123,43 +123,43 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="{{active_link_controller('bahan')}}">
-                                <a href="{{ base_url('bahan')}}">
+                            <li class="<?php echo e(active_link_controller('bahan')); ?>">
+                                <a href="<?php echo e(base_url('bahan')); ?>">
                                     <i class="fa fa-legal"></i> <span>Sub Kontraktor</span>
                                 </a>
                             </li>
-                            <li class="{{active_link_controller('harga_bahan')}}">
-                                <a href="{{ base_url('harga_bahan')}}">
+                            <li class="<?php echo e(active_link_controller('harga_bahan')); ?>">
+                                <a href="<?php echo e(base_url('harga_bahan')); ?>">
                                     <i class="fa fa-money"></i> <span>Harga Jual</span>
                                 </a>
                             </li>
-                            <li class="{{active_link_controller('pekerjaan')}}">
-                                <a href="{{ base_url('pekerjaan')}}">
+                            <li class="<?php echo e(active_link_controller('pekerjaan')); ?>">
+                                <a href="<?php echo e(base_url('pekerjaan')); ?>">
                                     <i class="fa fa-briefcase"></i> <span>Pekerjaan</span>
                                 </a>
                             </li>
-                            <li class="{{active_link_controller('spk')}}">
-                                <a href="{{ base_url('spk')}}">
+                            <li class="<?php echo e(active_link_controller('spk')); ?>">
+                                <a href="<?php echo e(base_url('spk')); ?>">
                                     <i class="fa fa-wpforms"></i> <span>SPK</span>
                                 </a>
                             </li>
-                            <li class="{{active_link_controller('laporan')}}">
-                                <a href="{{ base_url('laporan')}}">
+                            <li class="<?php echo e(active_link_controller('laporan')); ?>">
+                                <a href="<?php echo e(base_url('laporan')); ?>">
                                     <i class="fa fa-file-o"></i> <span>Laporan</span>
                                 </a>
                             </li>
-                            <li class="{{active_link_controller('laporan')}}">
-                                <a href="{{ base_url('laporan/laporanbri')}}">
+                            <li class="<?php echo e(active_link_controller('laporan')); ?>">
+                                <a href="<?php echo e(base_url('laporan/laporanbri')); ?>">
                                     <i class="fa fa-file-o"></i> <span>Laporan BRI</span>
                                 </a>
                             </li>
-                            <li class="{{active_link_controller('laporan')}}">
-                                <a href="{{ base_url('laporan/laporantukang')}}">
+                            <li class="<?php echo e(active_link_controller('laporan')); ?>">
+                                <a href="<?php echo e(base_url('laporan/laporantukang')); ?>">
                                     <i class="fa fa-file-o"></i> <span>Laporan Tukang</span>
                                 </a>
                             </li>
-                            <li class="{{active_link_controller('laporan')}}">
-                                <a href="{{ base_url('laporan/laporankanwil')}}">
+                            <li class="<?php echo e(active_link_controller('laporan')); ?>">
+                                <a href="<?php echo e(base_url('laporan/laporankanwil')); ?>">
                                     <i class="fa fa-file-o"></i> <span>Laporan Kanwil</span>
                                 </a>
                             </li>
@@ -174,32 +174,32 @@
                         </a>
                         <ul class="treeview-menu ">
                             <li>
-                                <a href="{{ base_url('repair/subkon')}}">
+                                <a href="<?php echo e(base_url('repair/subkon')); ?>">
                                     <i class="fa fa-legal"></i> <span>Sub Kontraktor</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ base_url('repair/harga')}}">
+                                <a href="<?php echo e(base_url('repair/harga')); ?>">
                                     <i class="fa fa-money"></i> <span>Harga</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ base_url('repair/pekerjaan')}}">
+                                <a href="<?php echo e(base_url('repair/pekerjaan')); ?>">
                                     <i class="fa fa-briefcase"></i> <span>Pekerjaan</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ base_url('repair/spk')}}">
+                                <a href="<?php echo e(base_url('repair/spk')); ?>">
                                     <i class="fa fa-wpforms"></i> <span>SPK</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ base_url('repair/laporan')}}">
+                                <a href="<?php echo e(base_url('repair/laporan')); ?>">
                                     <i class="fa fa-file-o"></i> <span>Laporan</span>
                                 </a>
                             </li>
                              <li>
-                                <a href="{{ base_url('repair/laporan/laporantukang')}}">
+                                <a href="<?php echo e(base_url('repair/laporan/laporantukang')); ?>">
                                     <i class="fa fa-file-o"></i> <span>Laporan Tukang</span>
                                 </a>
                             </li>
@@ -212,7 +212,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </div>
         <!-- /.content-wrapper -->
 

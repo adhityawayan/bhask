@@ -180,7 +180,7 @@
                 <table border="1" width="100%" cellpadding="10" cellspacing="0">
                     <tr>
                         <td>
-                            Terbilang : <?php echo Terbilang($grand); ?>
+                            Terbilang : <?php echo Terbilang($grand); ?> Rupiah
                         </td>
                     </tr>
                 </table>

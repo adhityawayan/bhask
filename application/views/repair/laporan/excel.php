@@ -68,7 +68,8 @@
 	</tr>
 
 	<?php
-		$no = 1;
+		$no     = 1;
+		$i_test = 0;
 		foreach ($pekerjaan as $p){ 
 			$row = 0;
 			$nilai_spk = 0;
@@ -128,11 +129,11 @@
 		<td rowspan="<?php echo $row ?>"><?php echo $p->nama_z ?></td>
 		<?php } ?>
 		
-		<td><?php if (!empty($detail_data[$i])) echo $detail_data[$i]->survey_repair_detail; ?></td>
+		<td><?php if (!empty($detail_data[$i_test])) echo $detail_data[$i_test]->survey_repair_detail; ?></td>
 		<td>
 			<?php 
-				if (!empty($detail_data[$i])){
-					$montage = $detail_data[$i]->montage_repair_detail;
+				if (!empty($detail_data[$i_test])){
+					$montage = $detail_data[$i_test]->montage_repair_detail;
 					if ($montage==0) {
 						echo "Pengajuan";
 					}elseif ($montage==1) {
@@ -145,13 +146,13 @@
 				}
 			?>
 		</td>
-		<td><?php if (!empty($detail_data[$i])) echo $detail_data[$i]->kode_repair_subkon; ?></td>
+		<td><?php if (!empty($detail_data[$i_test])) echo $detail_data[$i_test]->kode_repair_subkon; ?></td>
 		<td>
 			<?php 
-				if (!empty($detail_data[$i])){
+				if (!empty($detail_data[$i_test])){
 					$harga = Mrepairharga::
-							where('id_z',$detail_data[$i]->id_z)
-							->where('id_repair_subkon',$detail_data[$i]->id_repair_subkon)
+							where('id_z',$detail_data[$i_test]->id_z)
+							->where('id_repair_subkon',$detail_data[$i_test]->id_repair_subkon)
 							->first();
 
 					echo $harga->harga_repair_harga;
@@ -170,15 +171,15 @@
 				}
 			?>
 		</td>
-		<td><?php if (!empty($detail_data[$i])) echo $detail_data[$i]->sticker_repair_detail; ?></td>
-		<td><?php if (!empty($detail_data[$i])) echo $detail_data[$i]->pemasangan_repair_detail; ?></td>
-		<td><?php if (!empty($detail_data[$i])) echo $detail_data[$i]->foto_pemasangan_repair_detail; ?></td>
-		<td><?php if (!empty($detail_data[$i])) echo $detail_data[$i]->bast_repair_detail; ?></td>
-		<td><?php if (!empty($detail_data[$i])) echo $detail_data[$i]->bapp_repair_detail; ?></td>
-		<td><?php if (!empty($detail_data[$i])) echo $detail_data[$i]->nama_tukang_repair_detail; ?></td>
-		<td><?php if (!empty($detail_data[$i])) echo $detail_data[$i]->harga_repair_subkon; ?></td>
-		<td><?php if (!empty($detail_data[$i])) echo $detail_data[$i]->payment_repair_detail; ?></td>
-		<td><?php if (!empty($detail_data[$i])) echo $detail_data[$i]->tanggal_payment_repair_detail; ?></td>
+		<td><?php if (!empty($detail_data[$i_test])) echo $detail_data[$i_test]->sticker_repair_detail; ?></td>
+		<td><?php if (!empty($detail_data[$i_test])) echo $detail_data[$i_test]->pemasangan_repair_detail; ?></td>
+		<td><?php if (!empty($detail_data[$i_test])) echo $detail_data[$i_test]->foto_pemasangan_repair_detail; ?></td>
+		<td><?php if (!empty($detail_data[$i_test])) echo $detail_data[$i_test]->bast_repair_detail; ?></td>
+		<td><?php if (!empty($detail_data[$i_test])) echo $detail_data[$i_test]->bapp_repair_detail; ?></td>
+		<td><?php if (!empty($detail_data[$i_test])) echo $detail_data[$i_test]->nama_tukang_repair_detail; ?></td>
+		<td><?php if (!empty($detail_data[$i_test])) echo $detail_data[$i_test]->harga_repair_subkon; ?></td>
+		<td><?php if (!empty($detail_data[$i_test])) echo $detail_data[$i_test]->payment_repair_detail; ?></td>
+		<td><?php if (!empty($detail_data[$i_test])) echo $detail_data[$i_test]->tanggal_payment_repair_detail; ?></td>
 
 		
 		<?php if ($i==0){ ?>
@@ -202,10 +203,10 @@
 		<td rowspan="<?php echo $row ?>"><?php echo $spk->tanggal_payment_invoice_repair_spk?></td>
 		<td rowspan="<?php echo $row ?>"><?php echo round($totalpay = $retensi100) ?></td>
 		<td rowspan="<?php echo $row ?>"><?php echo round($balance = $totalpay) ?></td>
-		<?php } ?>
-
-		<?php } ?>
-		<?php } ?>
+					<?php } ?>
+				</tr>
+			<?php $i_test=$i;} ?>
+		<?php $i_test++; } ?>
 	</tr>
 </table>
 </body>
